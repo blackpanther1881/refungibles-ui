@@ -1,0 +1,85 @@
+.large {
+    font-size: 20px;
+    padding: 8px 16px;
+    font-weight: 600;
+    line-height: 30px;
+    height: 48px;
+}
+
+.medium {
+    font-size: 16px;
+    padding: 8px 16px;
+    font-weight: 600;
+    line-height: 24px;
+    height: 40px;
+}
+
+.small {
+    font-size: 12px;
+    padding: 8px 16px;
+    font-weight: 600;
+    line-height: 18px;
+    height: 32px;
+}
+
+.auto {
+    font-size: 14px;
+    padding: 8px 16px;
+    font-weight: 600;
+    line-height: 21px;
+    height: 37px;
+}
+
+
+/* primary button styles */
+.primary {
+    @apply bg-white-400;
+    @apply text-black-200;
+}
+
+.primary:hover{
+    @apply bg-black-400;
+}
+
+.primary:disabled{
+    @apply bg-black-300;
+    @apply text-white-700;
+}
+
+/* secondary button styles */
+.secondary {
+    background: transparent;
+    border: 1px solid;
+    @apply border-red-500;
+    @apply text-red-500;
+}
+
+.secondary:hover{
+    background: #C7323833;
+}
+
+.secondary:disabled{
+    background: #C1C7CD;
+    border-color: #C1C7CD;
+    @apply text-black-100;
+}
+
+/* tertiary button styles */
+
+.tertiary {
+    @apply bg-transparent;
+    @apply text-black-600;
+    border: 1px solid transparent;
+}
+
+.tertiary:disabled{
+    @apply text-white-700;
+}
+
+.primary:disabled, .secondary:disabled, .appButton.tertiary:disabled{
+    pointer-events: none;
+}
+
+
+
+
