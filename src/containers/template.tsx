@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import NavBar from "@/containers/nav-bar";
 
 export const PageTemplate = ({
   children,
@@ -11,10 +12,11 @@ export const PageTemplate = ({
   title: string;
 }) => {
   return (
-      <div className="flex md:block bg-body-bg">
-        <div className={"mainContainer flex-1 h-screen bg-no-repeat"}>
-          {children}
-        </div>
+    <div className="flex md:block bg-body-bg">
+      <div className={"mainContainer flex-1 h-screen bg-no-repeat"}>
+        <NavBar />
+        {children}
       </div>
+    </div>
   );
 };

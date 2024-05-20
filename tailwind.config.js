@@ -70,14 +70,20 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   darkMode: "class",
   theme: {
-    colors: { ...colors },
-    backgroundImage: {},
+    colors: {
+      ...colors,
+      activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)"
+    },
+    backgroundImage: {
+      activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)"
+    },
     fill: { ...colors },
     backgroundColor: {
       ...colors,
       none: "none",
       transparent: "transparent",
       disabled: "#A9A9A9"
+      // activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)"
     },
     fontFamily: {
       primary: ["Poppins", "sans-serif"]
@@ -170,9 +176,7 @@ module.exports = {
         "-1.5sm": { min: "640px" },
         "-sm": { min: "512px" }
       },
-      height: {
-
-      }
+      height: {}
     }
   },
   plugins: []
