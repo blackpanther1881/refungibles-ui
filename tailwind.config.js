@@ -75,7 +75,9 @@ module.exports = {
       activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)"
     },
     backgroundImage: {
-      activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)"
+      activeState: "linear-gradient(90deg, #FD9C3D 0%, #C0266E 100%)",
+      navBarActiveBg:
+        "linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%)"
     },
     fill: { ...colors },
     backgroundColor: {

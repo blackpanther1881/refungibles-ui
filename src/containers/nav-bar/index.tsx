@@ -33,8 +33,8 @@ const NavBar = () => {
   ];
   const route = useRouter();
   return (
-    <div className={"bg-white-100"}>
-      <div className={"max-w-[1440px] px-[40px] mx-auto py-4"}>
+    <div className={"bg-transparent"}>
+      <div className={"max-w-[1440px] px-[40px] mx-auto h-[80px]"}>
         <div className={"flex items-center justify-between"}>
           <div>
             <Image
@@ -49,8 +49,8 @@ const NavBar = () => {
               <Link
                 href={item.link}
                 key={index}
-                className={`px-4 py-3 flex items-center group ${
-                  route.pathname === item.link ? "active" : ""
+                className={`px-4 py-[28px] flex items-center group ${
+                  route.pathname === item.link ? "active bg-navBarActiveBg" : ""
                 }`}
               >
                 <span className={"mr-1 -mb-[1px]"}>

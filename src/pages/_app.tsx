@@ -7,7 +7,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Persistence App</title>s
+        <title>Refungibles</title>
       </Head>
       <>
         <Component {...pageProps} />
