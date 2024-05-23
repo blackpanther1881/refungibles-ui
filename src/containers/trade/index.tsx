@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
+import Swap from "@/containers/trade/swap";
 const Trade = () => {
   const [activeStakeTab, setActiveStakeTab] = useState<any>("swap");
   const customHandler = (value: any) => {
@@ -40,7 +41,7 @@ const Trade = () => {
       </div>
       <div className={"max-w-[1440px] mx-auto"}>
         <Tabs.Content className="TabsContent" value="swap">
-          <p>swap</p>
+          <Swap />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="perps">
           <p>un-stake</p>

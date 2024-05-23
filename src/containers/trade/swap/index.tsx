@@ -1,0 +1,56 @@
+import React, { useState } from "react";
+import * as Tabs from "@radix-ui/react-tabs";
+import Market from "@/containers/trade/swap/market";
+
+const Swap = () => {
+  const [activeStakeTab, setActiveStakeTab] = useState<any>("market");
+  const customHandler = (value: any) => {
+    setActiveStakeTab(value);
+  };
+  return (
+    <Tabs.Root
+      className="w-[502px] mx-auto bg-[#FFFFFF1A] rounded-xl p-2 mt-[10px]"
+      defaultValue="market"
+      onValueChange={customHandler}
+    >
+      <div className={""}>
+        <div className={""}>
+          <Tabs.List className="TabsList flex " aria-label="swap-form">
+            <Tabs.Trigger
+              className={`TabsTrigger flex items-center justify-center text-white-600 text-base px-[32px] py-[22px]
+          font-medium text-[18px] leading-[21.8px] ${
+            activeStakeTab === "market"
+              ? "bg-[#E3E3E31A] rounded-tr-xl rounded-tl-xl"
+              : ""
+          }`}
+              value="market"
+            >
+              Swap
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              className={`TabsTrigger flex items-center justify-center text-white-600 text-base px-[32px] py-[22px]
+          font-medium text-[18px] leading-[21.8px] ${
+            activeStakeTab === "limit"
+              ? "bg-[#E3E3E31A] rounded-tr-xl rounded-tl-xl"
+              : ""
+          }`}
+              value="limit"
+            >
+              Limit
+            </Tabs.Trigger>
+          </Tabs.List>
+        </div>
+      </div>
+      <div className={""}>
+        <Tabs.Content className="TabsContent" value="market">
+          <Market />
+        </Tabs.Content>
+        <Tabs.Content className="TabsContent" value="limit">
+          <p>un-stake</p>
+        </Tabs.Content>
+      </div>
+    </Tabs.Root>
+  );
+};
+
+export default Swap;

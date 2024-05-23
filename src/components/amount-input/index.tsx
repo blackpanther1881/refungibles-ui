@@ -5,23 +5,18 @@ import { InputText } from "@/components/base/input";
 import Image from "next/image";
 import { AssetProps } from "@/utils/types";
 
-export enum TokenModalInputBoxTrigger {
-  "FROM" = "from",
-  "TO" = "to"
-}
-
 export interface Props {
+  type: string;
+  assetInfo: AssetProps;
   className?: string;
   activeInput?: boolean;
-  type?: TokenModalInputBoxTrigger;
-  assetInfo: AssetProps;
 }
 
 export const AmountInput = ({
   className,
   activeInput = false,
   assetInfo,
-  type = TokenModalInputBoxTrigger.FROM
+  type = "amountIn"
 }: Props) => {
   const { register, getValues, setValue, watch } = useFormContext();
 
@@ -29,20 +24,18 @@ export const AmountInput = ({
   const availableBlcDollar = "$3434";
 
   const availableBlcHandler = (amount: any) => {
-    const field =
-      type === TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut";
-    setValue(field, amount);
+    // const field =
+    //   type === TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut";
+    setValue(type, amount);
   };
 
   const handleInputChange = (evt: any) => {
-    const field =
-      type === TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut";
-    setValue(field, evt.target.value);
+    setValue(type, evt.target.value);
   };
 
   return (
     <div
-      className={`px-6 py-[17px] bg-[#F6F7F9] border border-[#DDE1E6] rounded-md md:p-3`}
+      className={`px-6 py-[17px] bg-[#E3E3E31A] rounded-md md:p-3 ${className}`}
     >
       <div className={"flex items-center justify-between"}>
         <div className="flex justify-center flex-col flex-1">
@@ -73,16 +66,12 @@ export const AmountInput = ({
           </div>
         </div>
         <InputText
-          {...register(
-            type === TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut"
-          )}
+          {...register(type)}
           // passing ref as null to avoid console error
           ref={null}
           type="text"
           placeholder="0.00"
-          value={watch(
-            type === TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut"
-          )}
+          value={watch(type)}
           disable={!activeInput}
           required={true}
           title={"Amount must have value more than 0.01"}
@@ -108,9 +97,7 @@ export const AmountInput = ({
           {availableBlcDollar}
         </p>
       </div>
-      {Number(
-        watch(type == TokenModalInputBoxTrigger.FROM ? "amountIn" : "amountOut")
-      ) > Number(availableBlc) ? (
+      {Number(watch(type)) > Number(availableBlc) ? (
         <p className={"text-[14px] text-red-400 font-normal mt-1"}>
           Exceeds Wallet Balance
         </p>
