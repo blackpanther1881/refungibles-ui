@@ -19,7 +19,7 @@ export const InputText = ({
   const inputClass =
     inputType === "plain"
       ? "bg-transparent border-0 text-black-100 leading-normal " +
-        "box-shadow-none font-normal text-3xl m-0 focus:border-0 focus:box-shadow-none text-right md:text-lg" +
+        "box-shadow-none font-normal text-3xl m-0 focus:border-0 focus:box-shadow-none text-left md:text-lg" +
         "p-0 placeholder:text-black-100 placeholder:leading-normal placeholder:font-normal outline-none"
       : "";
 

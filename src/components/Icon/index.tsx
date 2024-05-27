@@ -12,7 +12,7 @@ const Icon = ({ iconName, viewBox, stroke, viewClass, fill }: Props) => {
   return (
     <svg
       viewBox={viewBox ? viewBox : "0 0 16 16"}
-      className={`icon icon-${viewClass} ${fill ? `fill-${fill}` : ""} ${
+      className={`icon ${viewClass} ${fill ? `fill-${fill}` : ""} ${
         stroke ? `fill-${stroke}` : ""
       }`}
     >

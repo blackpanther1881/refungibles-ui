@@ -5,20 +5,11 @@ import { AmountInput } from "@/components/amount-input";
 import Icon from "@/components/Icon";
 import { Button } from "@/components/base/buttons";
 import { Spinner } from "@/components/base/spinner";
+import { dummyTokenList } from "@/utils/config";
 
 type StakeFormFields = {
   amountOut: string;
   amountIn: string;
-};
-
-export const baseAsset: any = {
-  name: "USDC",
-  identifier: "USDC",
-  coinDecimals: 6,
-  prefix: "usdc",
-  chain: "USDC",
-  networkLabel: "USDC",
-  imgUrl: "/tokens/usdc.svg"
 };
 
 const Market = () => {
@@ -30,6 +21,8 @@ const Market = () => {
     }
   });
 
+  const selectedItem = dummyTokenList["ethereum"][0];
+  const selectedOutItem = dummyTokenList["optimism"][2];
   const inProgress = false;
   const isMobile = false;
   const onSubmit: SubmitHandler<StakeFormFields> = (data) => console.log(data);
@@ -39,25 +32,27 @@ const Market = () => {
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <AmountInput
           activeInput={true}
-          assetInfo={baseAsset}
+          assetInfo={selectedItem}
           type={"amountIn"}
+          label={"Pay"}
           className={"!rounded-tl-[0px]"}
         />
         <div className="flex w-full items-center justify-center relative">
           <div
             className={`${styles.iconBox} 
           rounded-full flex justify-center items-center absolute 
-          w-[40px] h-[40px] bg-[#fff] border border-white-400 md:w-[28px] md:h-[28px]`}
+          w-[45px] h-[45px] bg-[#11111199] md:w-[28px] md:h-[28px]`}
           >
             <Icon
-              iconName="exchange-arrow"
-              viewClass="search !w-[14px] md:!w-[10px] fill-black-600"
+              iconName="exchange-arrows"
+              viewClass="search !w-[20px] md:!w-[10px] fill-black-600"
             />
           </div>
         </div>
         <div className="flex-1 mt-2.5 mb-4">
           <AmountInput
-            assetInfo={baseAsset}
+            label={"Receive"}
+            assetInfo={selectedOutItem}
             activeInput={false}
             type={"amountOut"}
           />
@@ -67,7 +62,7 @@ const Market = () => {
             className={`${
               inProgress ? "!py-[0.8125rem]" : ""
             } w-full md:py-2 md:text-sm flex items-center justify-center`}
-            type="secondary"
+            type="primary"
             size="large"
             disabled={inProgress}
             content={

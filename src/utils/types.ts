@@ -2,8 +2,12 @@ export interface AssetProps {
   name: string;
   identifier: string;
   coinDecimals: number;
-  prefix: string;
   chain: string;
+  network: string;
   networkLabel: string;
   imgUrl: string;
+}
+
+export interface TokenList {
+  [index: string]: AssetProps[];
 }
