@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
-import { Button } from "@/components/base/buttons";
 import Icon from "@/components/Icon";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AssetProps, TokenList } from "@/utils/types";
 import { useFormContext } from "react-hook-form";
+import Dropdown from "@/components/base/dropdown";
 
 interface Props {
   selectedItem: AssetProps;
@@ -48,21 +48,28 @@ const AssetSelection = ({
               close
             </button>
           </div>
-          <div className={`w-full mb-4 mt-0 relative md:mb-2`}>
-            <input
-              type="text"
-              className={
-                "py-2 pl-[40px] pr-4 text-sm text-black-600 " +
-                "rounded-md font-normal border border-solid border-white-400 outline-none md:py:1.5 pl-2.5 w-full " +
-                "text-black-600 h-[37px] placeholder:text-black-600"
-              }
-              placeholder={"Search"}
-              autoFocus={false}
-              onChange={searchHandler}
-            />
-            <Icon
-              iconName="search"
-              viewClass={`!fill-[#A6A6A6] absolute left-[15px] top-[10px] w-[14px] h-[14px]`}
+          <div className={"flex "}>
+            <div className={`w-full mb-4 mt-0 relative md:mb-2`}>
+              <input
+                type="text"
+                className={
+                  "py-2 pl-[40px] pr-4 text-sm text-black-600 " +
+                  "rounded-md font-normal border border-solid border-white-400 outline-none md:py:1.5 pl-2.5 w-full " +
+                  "text-black-600 h-[37px] placeholder:text-black-600"
+                }
+                placeholder={"Search"}
+                autoFocus={false}
+                onChange={searchHandler}
+              />
+              <Icon
+                iconName="search"
+                viewClass={`!fill-[#A6A6A6] absolute left-[15px] top-[10px] w-[14px] h-[14px]`}
+              />
+            </div>
+            <Dropdown
+              content={<p>content</p>}
+              label={"test"}
+              className={"test1"}
             />
           </div>
 
