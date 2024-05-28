@@ -5,20 +5,28 @@ interface Props {
   label: any;
   content: any;
   className?: string;
+  labelClass?: string;
+  position?: "start" | "end" | "center";
 }
-const Dropdown = ({ label, content, className }: Props) => {
-  const [bookmarksChecked, setBookmarksChecked] = React.useState(true);
-  const [urlsChecked, setUrlsChecked] = React.useState(false);
-  const [person, setPerson] = React.useState("pedro");
-
+const Dropdown = ({
+  label,
+  content,
+  className,
+  position = "center",
+  labelClass
+}: Props) => {
   return (
     <div>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className={"text-white-700"}>{label}</button>
+          <button className={`${labelClass}`}>{label}</button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Portal>
-          <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
+          <DropdownMenu.Content
+            className={`DropdownMenuContent ${className}`}
+            sideOffset={5}
+            align={position!}
+          >
             <p>{content}</p>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>

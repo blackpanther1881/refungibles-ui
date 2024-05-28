@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { AssetProps, TokenList } from "@/utils/types";
 import { useFormContext } from "react-hook-form";
 import Dropdown from "@/components/base/dropdown";
+import NetworkDropdown from "@/components/amount-input/network-dropdown";
 
 interface Props {
   selectedItem: AssetProps;
@@ -43,13 +44,13 @@ const AssetSelection = ({
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent !bg-[#000000]">
           <div className="relative flex items-center justify-between mb-3 md:mb-2">
-            <p className={"text-white-700 md:text-sm"}>Select Asset</p>
+            <p className={"text-white-700 md:text-sm"}>Select a Token</p>
             <button onClick={onClose} className={"text-white-700"}>
-              close
+              <Icon viewClass={`!w-[14px]`} iconName="close" />
             </button>
           </div>
-          <div className={"flex "}>
-            <div className={`w-full mb-4 mt-0 relative md:mb-2`}>
+          <div className={"flex gap-[12px]"}>
+            <div className={`flex-1 mb-4 mt-0 relative md:mb-2`}>
               <input
                 type="text"
                 className={
@@ -63,14 +64,10 @@ const AssetSelection = ({
               />
               <Icon
                 iconName="search"
-                viewClass={`!fill-[#A6A6A6] absolute left-[15px] top-[10px] w-[14px] h-[14px]`}
+                viewClass={`!fill-[#A6A6A6] absolute left-[15px] top-[12px] w-[14px] h-[14px]`}
               />
             </div>
-            <Dropdown
-              content={<p>content</p>}
-              label={"test"}
-              className={"test1"}
-            />
+            <NetworkDropdown />
           </div>
 
           <div

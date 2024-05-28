@@ -69,3 +69,21 @@ export const dummyTokenList: TokenList = {
     }
   ]
 };
+
+export const dummyNetworkList = [
+  {
+    name: "ethereum",
+    label: "Ethereum",
+    logoUrl: "/images/networks/ethereum.svg"
+  },
+  {
+    name: "optimism",
+    label: "Optimism",
+    logoUrl: "/images/networks/optimism.svg"
+  },
+  {
+    name: "arbitrum",
+    label: "Arbitrum",
+    logoUrl: "/images/networks/arbitrum.svg"
+  }
+];
