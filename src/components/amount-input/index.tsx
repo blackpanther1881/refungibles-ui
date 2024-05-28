@@ -48,8 +48,12 @@ export const AmountInput = ({
         <div className={"flex text-white-200 items-center text-sm"}>
           <Icon viewClass={`mr-2 !w-[13px]`} iconName="wallet" />
           <p className={"mr-2"}>{availableBlc}</p>
-          <p className={"px-2 py-1 rounded-md"}>Half</p>
-          <p className={"px-2 py-1 rounded-md"}>Max</p>
+          {activeInput ? (
+            <>
+              <p className={"px-2 py-1 rounded-md"}>Half</p>
+              <p className={"px-2 py-1 rounded-md"}>Max</p>
+            </>
+          ) : null}
         </div>
       </div>
 

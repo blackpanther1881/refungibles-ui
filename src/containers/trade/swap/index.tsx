@@ -25,7 +25,7 @@ const Swap = () => {
           }`}
               value="market"
             >
-              Swap
+              Market
             </Tabs.Trigger>
             <Tabs.Trigger
               className={`TabsTrigger flex items-center justify-center text-white-600 text-base px-[32px] py-[22px]

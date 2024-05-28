@@ -33,7 +33,7 @@ const NavBar = () => {
   ];
   const route = useRouter();
   return (
-    <div className={"bg-transparent"}>
+    <div className={"bg-transparent border-b border-[#9D9D9D4D]"}>
       <div className={"max-w-[1440px] px-[40px] mx-auto h-[80px]"}>
         <div className={"flex items-center justify-between"}>
           <div>
