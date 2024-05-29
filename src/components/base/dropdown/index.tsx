@@ -27,7 +27,9 @@ const Dropdown = ({
             sideOffset={5}
             align={position!}
           >
-            <p>{content}</p>
+            <DropdownMenu.Item className="DropdownMenuItem">
+              {content}
+            </DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
