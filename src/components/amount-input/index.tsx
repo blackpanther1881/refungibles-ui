@@ -128,7 +128,7 @@ export const AmountInput = ({
       ) : null}
       {showAssetDialog ? (
         <AssetSelection
-          networkKey={networkKey}
+          networkKey={networkKey!}
           selectedItem={selectedToken}
           tokenList={dummyTokenList}
           onSelectHandler={onSelect}

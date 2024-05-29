@@ -41,18 +41,20 @@ const NetworkDropdown = ({
         </div>
       }
       label={
-        <div className={"flex items-center py-2 px-2 rounded-md"}>
-          <Image
-            src={selectedItem.logoUrl}
-            alt={selectedItem.name}
-            className={"mr-2"}
-            width={20}
-            height={20}
-          />
-          <div>
-            <Icon viewClass={` !w-[14px] `} iconName="chevron" />
+        selectedItem ? (
+          <div className={"flex items-center py-2 px-2 rounded-md"}>
+            <Image
+              src={selectedItem.logoUrl}
+              alt={selectedItem.name}
+              className={"mr-2"}
+              width={20}
+              height={20}
+            />
+            <div>
+              <Icon viewClass={` !w-[14px] `} iconName="chevron" />
+            </div>
           </div>
-        </div>
+        ) : null
       }
       labelClass={"border border-white-200 rounded-md"}
       className={"!bg-black-500 !p-2"}

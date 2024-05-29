@@ -5,7 +5,7 @@ import { AmountInput } from "@/components/amount-input";
 import Icon from "@/components/Icon";
 import { Button } from "@/components/base/buttons";
 import { Spinner } from "@/components/base/spinner";
-import { dummyTokenList } from "@/utils/config";
+import { dummyNetworkList, dummyTokenList } from "@/utils/config";
 
 type StakeFormFields = {
   amountOut: string;
@@ -22,7 +22,9 @@ const Market = () => {
       amountIn: "",
       amountOut: "0",
       tokenIn: selectedItem,
-      tokenOut: selectedOutItem
+      tokenOut: selectedOutItem,
+      tokenInNetwork: dummyNetworkList[0],
+      tokenOutNetwork: dummyNetworkList[0]
     }
   });
 
@@ -39,6 +41,7 @@ const Market = () => {
           type={"amountIn"}
           label={"Pay"}
           tokenKey={"tokenIn"}
+          networkKey={"tokenInNetwork"}
           className={"!rounded-tl-[0px]"}
         />
         <div className="flex w-full items-center justify-center relative">
@@ -60,6 +63,7 @@ const Market = () => {
             activeInput={false}
             type={"amountOut"}
             tokenKey={"tokenOut"}
+            networkKey={"tokenOutNetwork"}
           />
         </div>
         <div>
