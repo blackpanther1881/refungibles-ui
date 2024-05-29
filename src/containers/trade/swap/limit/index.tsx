@@ -1,28 +1,41 @@
-import React from "react";
-import styles from "../styles.module.css";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import styles from "../../styles.module.css";
+import {
+  FormProvider,
+  SubmitHandler,
+  useForm,
+  useFormContext
+} from "react-hook-form";
 import { AmountInput } from "@/components/amount-input";
 import Icon from "@/components/Icon";
 import { Button } from "@/components/base/buttons";
 import { Spinner } from "@/components/base/spinner";
-import { dummyTokenList } from "@/utils/config";
+import { dummyNetworkList, dummyTokenList } from "@/utils/config";
+import { InputText } from "@/components/base/input";
+import Image from "next/image";
+import AssetSelection from "@/components/amount-input/asset-selection";
+import PriceInput from "@/containers/trade/swap/limit/pirce-input";
 
 type StakeFormFields = {
   amountOut: string;
   amountIn: string;
 };
 
-const Market = () => {
+const Limit = () => {
   const selectedItem = dummyTokenList["ethereum"][0];
   const selectedOutItem = dummyTokenList["optimism"][2];
 
   const methods = useForm<StakeFormFields>({
     mode: "all",
     defaultValues: {
-      amountIn: "",
-      amountOut: "0",
       tokenIn: selectedItem,
-      tokenOut: selectedOutItem
+      tokenOut: selectedOutItem,
+      tokenInNetwork: dummyNetworkList[0],
+      tokenOutNetwork: dummyNetworkList[0],
+      marketPrice: "0",
+      amountIn: "0",
+      amountOut: "0",
+      limitPrice: "0"
     }
   });
 
@@ -33,13 +46,14 @@ const Market = () => {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <PriceInput />
         <AmountInput
           activeInput={true}
           assetInfo={selectedItem}
           type={"amountIn"}
           label={"Pay"}
           tokenKey={"tokenIn"}
-          className={"!rounded-tl-[0px]"}
+          networkKey={"tokenInNetwork"}
         />
         <div className="flex w-full items-center justify-center relative">
           <div
@@ -60,6 +74,7 @@ const Market = () => {
             activeInput={false}
             type={"amountOut"}
             tokenKey={"tokenOut"}
+            networkKey={"tokenOutNetwork"}
           />
         </div>
         <div>
@@ -85,4 +100,4 @@ const Market = () => {
   );
 };
 
-export default Market;
+export default Limit;

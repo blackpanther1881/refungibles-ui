@@ -12,24 +12,31 @@ interface Props {
   tokenList: TokenList;
   onClose: (item: any) => void;
   onSelectHandler: (AssetProps: any) => void;
+  networkKey?: string;
 }
 
 const AssetSelection = ({
   selectedItem,
   tokenList,
   onSelectHandler,
-  onClose
+  onClose,
+  networkKey = "tokenInNetwork"
 }: Props) => {
   console.log(selectedItem, "checked");
   const [show, setShow] = useState(false);
-  const [selectedNetwork, setSelectedNetwork] = useState("ethereum");
 
   const [filteredList, setFilteredList] = useState<AssetProps[]>(
     tokenList["ethereum"]
   );
-  const { watch } = useFormContext();
+  const { watch, setValue } = useFormContext();
 
   useEffect(() => {}, []);
+
+  const onSelectNetworkHandler = (item: any) => {
+    console.log(item, "selected-item");
+    setValue(networkKey!, item);
+  };
+  const selectedNetwork = watch(networkKey!);
 
   const searchHandler = (evt: any) => {
     const searchTerm = evt.target.value;
@@ -38,6 +45,7 @@ const AssetSelection = ({
     });
     setFilteredList(filtered);
   };
+
   return (
     <Dialog.Root open={true} defaultOpen={true}>
       <Dialog.Portal>
@@ -67,9 +75,11 @@ const AssetSelection = ({
                 viewClass={`!fill-[#A6A6A6] absolute left-[15px] top-[12px] w-[14px] h-[14px]`}
               />
             </div>
-            <NetworkDropdown />
+            <NetworkDropdown
+              selectedItem={selectedNetwork}
+              onSelectHandler={onSelectNetworkHandler}
+            />
           </div>
-
           <div
             className={
               "h-auto rounded-lg flex-1 py-[2px] px-[2px] overflow-auto"
@@ -80,7 +90,11 @@ const AssetSelection = ({
                 filteredList.map((item, index) => (
                   <div
                     className={`px-4 py-3 flex items-center justify-between hover:cursor-pointer
-                     hover:rounded-md whitespace-nowrap md:px-2.5 md:py-1.5`}
+                     hover:rounded-md whitespace-nowrap md:px-2.5 md:py-1.5 ${
+                       item.name === selectedItem.name
+                         ? "pointer-events-none opacity-50"
+                         : ""
+                     }`}
                     key={index}
                     onClick={() => {
                       onSelectHandler(item);

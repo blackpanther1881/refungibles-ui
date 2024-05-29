@@ -3,8 +3,17 @@ import React from "react";
 import { dummyNetworkList } from "@/utils/config";
 import Image from "next/image";
 import Icon from "@/components/Icon";
-
-const NetworkDropdown = () => {
+import { AssetProps, TokenList } from "@/utils/types";
+interface Props {
+  networkKey: string;
+  selectedItem: any;
+  onSelectHandler: (network: any) => void;
+}
+const NetworkDropdown = ({
+  networkKey,
+  onSelectHandler,
+  selectedItem
+}: Props) => {
   return (
     <Dropdown
       content={
@@ -12,6 +21,9 @@ const NetworkDropdown = () => {
           {dummyNetworkList.map((item, index) => (
             <div
               key={index}
+              onClick={() => {
+                onSelectHandler(item);
+              }}
               className={
                 "flex items-center py-2 px-4 hover:bg-black-200 hover:rounded-md cursor-pointer"
               }
@@ -31,8 +43,8 @@ const NetworkDropdown = () => {
       label={
         <div className={"flex items-center py-2 px-2 rounded-md"}>
           <Image
-            src={dummyNetworkList[0].logoUrl}
-            alt={dummyNetworkList[0].name}
+            src={selectedItem.logoUrl}
+            alt={selectedItem.name}
             className={"mr-2"}
             width={20}
             height={20}

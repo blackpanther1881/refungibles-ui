@@ -13,6 +13,8 @@ export interface Props {
   assetInfo: AssetProps;
   className?: string;
   activeInput?: boolean;
+  tokenKey?: string;
+  networkKey?: string;
   label: string;
 }
 
@@ -21,6 +23,8 @@ export const AmountInput = ({
   activeInput = false,
   assetInfo,
   type = "amountIn",
+  tokenKey = "tokenIn",
+  networkKey = "tokenInNetwork",
   label
 }: Props) => {
   const { register, getValues, setValue, watch } = useFormContext();
@@ -39,6 +43,15 @@ export const AmountInput = ({
     setValue(type, evt.target.value);
   };
 
+  const onSelect = (item: any) => {
+    console.log(item, "selected-item");
+    setValue(tokenKey, item);
+    setShowAssetDialog(false);
+  };
+
+  const selectedToken = watch(tokenKey);
+
+  console.log(selectedToken, "selectedToken");
   return (
     <div
       className={`px-6 py-[17px] bg-[#E3E3E31A] rounded-md md:p-3 ${className}`}
@@ -83,21 +96,21 @@ export const AmountInput = ({
             }}
             content={
               <>
-                <div className="flex items-center">
-                  {assetInfo ? (
+                {selectedToken ? (
+                  <div className="flex items-center">
                     <Image
-                      src={assetInfo.imgUrl}
-                      alt={assetInfo.name}
+                      src={selectedToken.imgUrl}
+                      alt={selectedToken.name}
                       className={`md:!w-[24] md:!h-[24] relative mr-2`}
                       width={24}
                       height={24}
                     />
-                  ) : null}
-                  <span className="text-lg text-white-700 font-semibold leading-normal md:text-xsm md:ml-2 whitespace-nowrap">
-                    {assetInfo.name}
-                  </span>
-                  <Icon viewClass={`ml-4 !w-[10px]`} iconName="chevron" />
-                </div>
+                    <span className="text-lg text-white-700 font-semibold leading-normal md:text-xsm md:ml-2 whitespace-nowrap">
+                      {selectedToken.name}
+                    </span>
+                    <Icon viewClass={`ml-4 !w-[10px]`} iconName="chevron" />
+                  </div>
+                ) : null}
               </>
             }
           />
@@ -115,9 +128,10 @@ export const AmountInput = ({
       ) : null}
       {showAssetDialog ? (
         <AssetSelection
-          selectedItem={assetInfo}
+          networkKey={networkKey}
+          selectedItem={selectedToken}
           tokenList={dummyTokenList}
-          onSelectHandler={() => {}}
+          onSelectHandler={onSelect}
           onClose={() => {
             setShowAssetDialog(false);
           }}

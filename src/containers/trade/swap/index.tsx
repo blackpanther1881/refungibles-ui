@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import Market from "@/containers/trade/swap/market";
+import Limit from "@/containers/trade/swap/limit";
 
 const Swap = () => {
   const [activeStakeTab, setActiveStakeTab] = useState<any>("market");
@@ -58,7 +59,7 @@ const Swap = () => {
             <Market />
           </Tabs.Content>
           <Tabs.Content className="TabsContent" value="limit">
-            <p>un-stake</p>
+            <Limit />
           </Tabs.Content>
         </div>
       </Tabs.Root>
