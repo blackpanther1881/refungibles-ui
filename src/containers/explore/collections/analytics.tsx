@@ -1,24 +1,32 @@
 import { Collection } from "@/utils/types";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import CustomAreaChart from "@/components/charts/area-chart";
-import { dummyChartData } from "@/utils/config";
+import { dummyChartData, dummyNetworkList } from "@/utils/config";
+import Dropdown from "@/components/base/dropdown";
+import Icon from "@/components/Icon";
+import CustomBarChart from "@/components/charts/bar-chart";
 
 interface Props {
   collection: Collection;
 }
 
 const CollectionAnalytics = ({ collection }: Props) => {
+  const [chartType, setChartType] = useState("Area Chart");
   const chartDataOptions = [
     {
       label: "Transactions",
       value: "transaction_count",
-      color: "#887CFD",
+      color: "#01E4EB",
       key: "transaction_count",
       yAxisId: "rightAxis",
       position: "right"
     }
   ];
+
+  const handleChartType = (type: string) => {
+    setChartType(type);
+  };
   return (
     <div>
       <div className={"flex items-baseline mb-4"}>
@@ -35,14 +43,95 @@ const CollectionAnalytics = ({ collection }: Props) => {
         </span>
       </div>
       <div>
-        <CustomAreaChart
-          height={350}
-          totalData={dummyChartData}
-          chartDuration={7}
-          xAxisDataKey={"monthly"}
-          yAxisDataKeys={chartDataOptions}
-          showBrush={false}
-        />
+        {chartType === "Area Chart" ? (
+          <CustomAreaChart
+            height={350}
+            totalData={dummyChartData}
+            chartDuration={7}
+            xAxisDataKey={"monthly"}
+            yAxisDataKeys={chartDataOptions}
+            showBrush={false}
+          />
+        ) : (
+          <CustomBarChart
+            data={dummyChartData}
+            xAxisDataKey="date"
+            yAxisDataKeys={chartDataOptions}
+            unit="$"
+            tooltipUnit={{
+              unit: "$",
+              position: "start"
+            }}
+          />
+        )}
+      </div>
+      <div className={"flex justify-between"}>
+        <div className={"flex gap-[18px] items-center"}>
+          <div
+            className={
+              "w-[35px] h-[35px] flex items-center justify-center rounded-md bg-[#FFFFFF33]"
+            }
+          >
+            <p className={"text-white-200 text-sm "}>1D</p>
+          </div>
+          <div
+            className={
+              "w-[35px] h-[35px] flex items-center justify-center rounded-md bg-[#FFFFFF33]"
+            }
+          >
+            <p className={"text-white-200 text-sm "}>1W</p>
+          </div>
+          <div
+            className={
+              "w-[35px] h-[35px] flex items-center justify-center rounded-md bg-[#FFFFFF33]"
+            }
+          >
+            <p className={"text-white-200 text-sm "}>1M</p>
+          </div>
+          <div
+            className={
+              "w-[35px] h-[35px] flex items-center justify-center rounded-md bg-[#FFFFFF33]"
+            }
+          >
+            <p className={"text-white-200 text-sm "}>1Y</p>
+          </div>
+        </div>
+        <div>
+          <Dropdown
+            content={
+              <div className={"rounded-md "}>
+                <div
+                  onClick={() => {
+                    handleChartType("Area Chart");
+                  }}
+                  className={
+                    "flex items-center py-2 px-4 hover:bg-black-200 hover:rounded-md cursor-pointer"
+                  }
+                >
+                  <p className={"text-[14px] text-white-500"}>Area Chart</p>
+                </div>
+                <div
+                  onClick={() => {
+                    handleChartType("Bar Chart");
+                  }}
+                  className={
+                    "flex items-center py-2 px-4 hover:bg-black-200 hover:rounded-md cursor-pointer"
+                  }
+                >
+                  <p className={"text-[14px] text-white-500"}>Bar Chart</p>
+                </div>
+              </div>
+            }
+            label={
+              <p className={"text-[14px] text-white-500 py-2 px-4"}>
+                {chartType}
+              </p>
+            }
+            labelClass={"border border-white-200 rounded-md"}
+            className={"!bg-black-500 !p-2"}
+            position={"start"}
+          />
+        </div>
       </div>
     </div>
   );

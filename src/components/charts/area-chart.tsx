@@ -98,13 +98,9 @@ const CustomAreaChart = ({
     setBrushData(totalData.slice(dataIndex[0], dataIndex[1] + 1));
   };
   return (
-    // <div style={{ width: "100%" }}>
     <ResponsiveContainer width="103%" height={height}>
-      <LineChart
-        // width={500}
-        // height={900}
+      <AreaChart
         data={brushData.length > 0 ? brushData : totalData}
-        // syncId="anyId"
         margin={{
           top: 10,
           right: 30,
@@ -138,24 +134,26 @@ const CustomAreaChart = ({
               key={dataKey.key}
               type="monotone"
               dataKey={dataKey.value}
-              stroke={dataKey.color}
-              fill={`url(#color${dataKey.key})`}
-              strokeWidth={chartDuration == -1 || chartDuration == 365 ? 2 : 2}
+              // stroke={dataKey.color}
               dot={false}
-              // dot={chartDuration == -1 || chartDuration == 365 ? false : true}
               yAxisId={dataKey.yAxisId}
             />
           );
         })}
         {/* Keep Axes after graph so that it doesn't overlap with the graph https://github.com/recharts/recharts/issues/566#issuecomment-342402723 */}
-        <XAxis
-          dataKey={xAxisDataKey}
-          interval="equidistantPreserveStart"
-          // interval={2}
-          // tickCount={5}
-          tick={{ fontSize: "12px" }}
-          tickMargin={showBrush ? 5 : 10}
-        />
+        <XAxis dataKey={xAxisDataKey} tick={{ fontSize: "12px" }} />
+        {yAxisDataKeys.map((dataKey, index) => {
+          return (
+            <Area
+              key={dataKey.key}
+              dataKey={dataKey.value}
+              stroke={dataKey.color}
+              fill={`url(#color${dataKey.key})`}
+              // dot
+              yAxisId={dataKey.yAxisId}
+            />
+          );
+        })}
         {yAxisDataKeys.map((dataKey, index) => {
           return (
             <YAxis
@@ -214,9 +212,8 @@ const CustomAreaChart = ({
             </AreaChart>
           </Brush>
         ) : null}
-      </LineChart>
+      </AreaChart>
     </ResponsiveContainer>
-    // </div>
   );
 };
 
