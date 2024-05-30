@@ -52,7 +52,7 @@ const CollectionInfo = ({ nftID }: Props) => {
         </div>
         <div className={""}>
           <Tabs.Content className="TabsContent" value="analytics">
-            <CollectionAnalytics />
+            <CollectionAnalytics collection={collection} />
           </Tabs.Content>
           <Tabs.Content className="TabsContent" value="items">
             <CollectionItems collection={collection} />

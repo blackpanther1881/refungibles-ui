@@ -396,3 +396,46 @@ export const dummyCollections: Collection[] = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim"
   }
 ];
+
+export const dummyChartData = [
+  {
+    date: "22 May",
+    monthly: "May '24",
+    transaction_count: 5824
+  },
+  {
+    date: "23 May",
+    monthly: "May '24",
+    transaction_count: 5175
+  },
+  {
+    date: "24 May",
+    monthly: "May '24",
+    transaction_count: 4959
+  },
+  {
+    date: "25 May",
+    monthly: "May '24",
+    transaction_count: 4713
+  },
+  {
+    date: "26 May",
+    monthly: "May '24",
+    transaction_count: 4351
+  },
+  {
+    date: "27 May",
+    monthly: "May '24",
+    transaction_count: 5086
+  },
+  {
+    date: "28 May",
+    monthly: "May '24",
+    transaction_count: 5261
+  },
+  {
+    date: "29 May",
+    monthly: "May '24",
+    transaction_count: 4928
+  }
+];
