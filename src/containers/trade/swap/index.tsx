@@ -3,24 +3,29 @@ import * as Tabs from "@radix-ui/react-tabs";
 import Market from "@/containers/trade/swap/market";
 import Limit from "@/containers/trade/swap/limit";
 
-const Swap = () => {
+interface Props {
+  sourcePath: string;
+}
+const Swap = ({ sourcePath }: Props) => {
   const [activeStakeTab, setActiveStakeTab] = useState<any>("market");
   const customHandler = (value: any) => {
     setActiveStakeTab(value);
   };
   return (
-    <div className={"w-[502px] mx-auto mt-3"}>
-      <div
-        className={
-          "rounded-xl py-[23px] px-[35px] bg-[#FFFFFF1A] text-white-700"
-        }
-      >
-        <h1 className={"text-[26px] mb-2"}>Welcome to Refungibles</h1>
-        <p className={"text-[14px]"}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt
-        </p>
-      </div>
+    <div className={"w-[502px] mx-auto"}>
+      {sourcePath === "home" ? (
+        <div
+          className={
+            "rounded-xl py-[23px] px-[35px] bg-[#FFFFFF1A] text-white-700 mt-4"
+          }
+        >
+          <h1 className={"text-[26px] mb-2"}>Welcome to Refungibles</h1>
+          <p className={"text-[14px]"}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt
+          </p>
+        </div>
+      ) : null}
       <Tabs.Root
         className="bg-[#FFFFFF1A] rounded-xl p-2 mt-[10px]"
         defaultValue="market"

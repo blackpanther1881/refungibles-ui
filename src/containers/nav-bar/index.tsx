@@ -2,13 +2,26 @@ import Image from "next/image";
 import Icon from "@/components/Icon";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { Button } from "@/components/base/buttons";
+import React from "react";
 
 interface NavListProps {
   name: string;
   icon: string;
   activeIcon: string;
+  pageName: string;
   link: string;
 }
+
+const getActiveNav = (value: string, pathName: string) => {
+  console.log(value, pathName, "getActiveNav");
+  if (value === "/" && value === pathName) {
+    return true;
+  } else if (value !== "/" && pathName.includes(value)) {
+    return true;
+  }
+  return false;
+};
 
 const NavBar = () => {
   const navList: NavListProps[] = [
@@ -16,18 +29,21 @@ const NavBar = () => {
       name: "Trade",
       icon: "trade",
       activeIcon: "trade",
+      pageName: "trade",
       link: "/"
     },
     {
       name: "Explore",
       icon: "explore",
       activeIcon: "explore",
+      pageName: "explore",
       link: "/explore"
     },
     {
       name: "Pools",
       icon: "pools",
       activeIcon: "pools",
+      pageName: "pools",
       link: "/pools"
     }
   ];
@@ -50,7 +66,9 @@ const NavBar = () => {
                 href={item.link}
                 key={index}
                 className={`px-4 py-[28px] flex items-center group ${
-                  route.pathname === item.link ? "active bg-navBarActiveBg" : ""
+                  getActiveNav(item.link, route.pathname)
+                    ? "active bg-navBarActiveBg"
+                    : ""
                 }`}
               >
                 <span className={"mr-1 -mb-[1px]"}>
@@ -73,7 +91,14 @@ const NavBar = () => {
             ))}
           </div>
           <div>
-            <p>connect wallet</p>
+            <Button
+              className={`w-full md:py-2 md:text-sm flex items-center justify-center`}
+              type="secondary"
+              size="medium"
+              disabled={false}
+              content={"Connect Wallet"}
+              onClick={() => {}}
+            />
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ const Trade = () => {
       </div>
       <div className={"max-w-[1440px] mx-auto"}>
         <Tabs.Content className="TabsContent" value="swap">
-          <Swap />
+          <Swap sourcePath={"home"} />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="perps">
           <p>un-stake</p>

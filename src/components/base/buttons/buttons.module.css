@@ -33,29 +33,28 @@
 
 /* primary button styles */
 .primary {
-    @apply bg-white-400;
-    @apply text-black-200;
+    background:  #D9D9D933;
+    @apply text-white-700;
 }
 
 .primary:hover{
-    @apply bg-black-400;
+    background:  #D9D9D933;
 }
 
 .primary:disabled{
-    @apply bg-black-300;
-    @apply text-white-700;
+    background:  #D9D9D933;
+    @apply text-white-200;
 }
 
 /* secondary button styles */
 .secondary {
     background: transparent;
-    border: 1px solid;
-    @apply border-red-500;
-    @apply text-red-500;
+    border: 1px solid #01E4EB;
+    @apply text-white-700;
 }
 
 .secondary:hover{
-    background: #C7323833;
+    background: #D9D9D933;
 }
 
 .secondary:disabled{

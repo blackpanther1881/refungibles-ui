@@ -8,7 +8,7 @@ interface Props {
   nftID: any;
 }
 const CollectionInfo = ({ nftID }: Props) => {
-  const [activeStakeTab, setActiveStakeTab] = useState<any>("items");
+  const [activeStakeTab, setActiveStakeTab] = useState<any>("analytics");
   const customHandler = (value: any) => {
     setActiveStakeTab(value);
   };
@@ -19,7 +19,7 @@ const CollectionInfo = ({ nftID }: Props) => {
     <div className={"max-w-[1440px] mx-auto"}>
       <Tabs.Root
         className="p-2 mt-[10px]"
-        defaultValue="items"
+        defaultValue="analytics"
         onValueChange={customHandler}
       >
         <div className={""}>

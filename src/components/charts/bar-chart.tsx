@@ -23,8 +23,8 @@ const CustomTooltip = ({
 }: TooltipProps<ValueType, NameType> & { tooltipUnit: any }) => {
   if (active && payload && payload.length) {
     return (
-      <div className={"p-4"}>
-        <p>
+      <div className={"p-4 bg-black-100 rounded-md"}>
+        <p className={"text-white-500"}>
           {payload[0]?.payload?.datetime || payload[0]?.payload?.date || label}
         </p>
         {payload.map((entry, index) => {
@@ -35,9 +35,15 @@ const CustomTooltip = ({
             >
               <div className={"flex gap-1 items-center"} key={index}>
                 {/*<Circle size="10px" bg={entry.color} />*/}
-                <p>{entry.name}:</p>
+                <p className={"text-white-500"}>
+                  {(entry.name as string)
+                    .split("_")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                  :
+                </p>
               </div>
-              <p>
+              <p className={"text-white-500"}>
                 {tooltipUnit.position === "start"
                   ? `${tooltipUnit.unit}${numberFormat(
                       Math.abs(entry.value as number),
