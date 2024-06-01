@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import Market from "@/containers/trade/swap/market";
 import Limit from "@/containers/trade/swap/limit";
+import ExchangeRateInfo from "@/containers/trade/swap/exchangerate-info";
 
 interface Props {
   sourcePath: string;
@@ -68,6 +69,7 @@ const Swap = ({ sourcePath }: Props) => {
           </Tabs.Content>
         </div>
       </Tabs.Root>
+      <ExchangeRateInfo />
     </div>
   );
 };

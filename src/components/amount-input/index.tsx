@@ -54,9 +54,9 @@ export const AmountInput = ({
   console.log(selectedToken, "selectedToken");
   return (
     <div
-      className={`px-6 py-[17px] bg-[#E3E3E31A] rounded-md md:p-3 ${className}`}
+      className={`px-6 py-[16px] bg-[#E3E3E31A] rounded-md md:p-3 ${className}`}
     >
-      <div className={"flex items-center justify-between mb-4"}>
+      <div className={"flex items-center justify-between mb-3"}>
         <p className={"text-white-700"}>{label}</p>
         <div className={"flex text-white-200 items-center text-sm"}>
           <Icon viewClass={`mr-2 !w-[13px]`} iconName="wallet" />
@@ -81,14 +81,13 @@ export const AmountInput = ({
           disable={!activeInput}
           required={false}
           title={"Amount must have value more than 0.01"}
-          className={`h-[46px] max-w-[140px] mr-auto md:max-w-[100px] !text-white-600`}
+          className={`max-w-[140px] mr-auto md:max-w-[100px] !text-white-600`}
           inputType={"plain"}
           onChange={handleInputChange}
         />
         <div className="input-logo flex items-center justify-end">
           <Button
-            className={`bg-[#111111] !h-[46px] text-[12px] !text-[#fff] !py-1.5 button
-         md:py-2 md:text-sm flex items-center justify-center !rounded-full md:!h-[40px]`}
+            className={`bg-[#111111] !h-[37px] text-[18px] !text-[#fff] !py-1 button md:text-sm flex items-center justify-center !rounded-full md:!h-[40px]`}
             type="custom"
             size="medium"
             onClick={() => {
@@ -101,11 +100,11 @@ export const AmountInput = ({
                     <Image
                       src={selectedToken.imgUrl}
                       alt={selectedToken.name}
-                      className={`md:!w-[24] md:!h-[24] relative mr-2`}
-                      width={24}
-                      height={24}
+                      className={`md:!w-[18] md:!h-[18] relative mr-2`}
+                      width={18}
+                      height={18}
                     />
-                    <span className="text-lg text-white-700 font-semibold leading-normal md:text-xsm md:ml-2 whitespace-nowrap">
+                    <span className="text-lg text-white-700 font-medium leading-normal md:text-base md:ml-2 whitespace-nowrap">
                       {selectedToken.name}
                     </span>
                     <Icon viewClass={`ml-4 !w-[10px]`} iconName="chevron" />
@@ -116,7 +115,7 @@ export const AmountInput = ({
           />
         </div>
       </div>
-      <div className={"flex items-center justify-between mt-[4px]"}>
+      <div className={"flex items-center justify-between"}>
         <p className="text-black-100 font-normal leading-normal text-right text-sm">
           {availableBlcDollar}
         </p>
