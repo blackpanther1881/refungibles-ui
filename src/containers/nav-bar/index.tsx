@@ -3,7 +3,11 @@ import Icon from "@/components/Icon";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Button } from "@/components/base/buttons";
-import React from "react";
+import React, { useState } from "react";
+import WalletModal from "@/containers/nav-bar/wallet-modal";
+import { useAppStore } from "@/store";
+import { useShallow } from "zustand/react/shallow";
+import { stringTruncate } from "@/utils/number";
 
 interface NavListProps {
   name: string;
@@ -24,6 +28,12 @@ const getActiveNav = (value: string, pathName: string) => {
 };
 
 const NavBar = () => {
+  const [showWalletModal, setShowWalletModal] = useState(false);
+  const { walletData } = useAppStore(
+    useShallow((state) => ({
+      walletData: state.walletData.walletInfo
+    }))
+  );
   const navList: NavListProps[] = [
     {
       name: "Trade",
@@ -96,12 +106,25 @@ const NavBar = () => {
               type="secondary"
               size="medium"
               disabled={false}
-              content={"Connect Wallet"}
-              onClick={() => {}}
+              content={
+                walletData.walletConnection
+                  ? stringTruncate(walletData.account, 6)
+                  : "Connect Wallet"
+              }
+              onClick={() => {
+                setShowWalletModal(true);
+              }}
             />
           </div>
         </div>
       </div>
+      {showWalletModal ? (
+        <WalletModal
+          onClose={() => {
+            setShowWalletModal(false);
+          }}
+        />
+      ) : null}
     </div>
   );
 };

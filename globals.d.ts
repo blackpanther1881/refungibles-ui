@@ -1,5 +1,10 @@
 declare global {
   interface Window {
-    gtag: any;
+    ethereum: any;
+    getOfflineSigner: any;
+    keplr: any;
+    cosmostation?: any;
+    leap: any;
+    okxwallet: any;
   }
 }

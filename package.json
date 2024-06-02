@@ -17,6 +17,7 @@
     "bignumber.js": "^9.1.2",
     "bn.js": "^5.2.1",
     "eslint-config-prettier": "^8.6.0",
+    "ethers": "^6.12.2",
     "framer-motion": "^11.1.9",
     "next": "^13.4.12",
     "next-export-i18n": "^2.1.0",

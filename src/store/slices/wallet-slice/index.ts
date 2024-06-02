@@ -9,6 +9,7 @@ const initialState: WalletDataState = {
     walletInfo: {
       account: "",
       walletConnection: false,
+      signer: null
     },
     walletLoader: false
   },

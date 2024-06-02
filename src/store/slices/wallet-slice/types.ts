@@ -1,6 +1,8 @@
+import { JsonRpcSigner } from "ethers";
 
 export interface WalletInfo {
   walletConnection: boolean;
+  signer: JsonRpcSigner | null;
   account: string;
 }
 

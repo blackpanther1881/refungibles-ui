@@ -53,7 +53,10 @@ const AssetSelection = ({
         <Dialog.Content className="DialogContent !bg-[#000000]">
           <div className="relative flex items-center justify-between mb-3 md:mb-2">
             <p className={"text-white-700 md:text-sm"}>Select a Token</p>
-            <button onClick={onClose} className={"text-white-700"}>
+            <button
+              onClick={onClose}
+              className={"text-white-700 cursor-pointer"}
+            >
               <Icon viewClass={`!w-[14px]`} iconName="close" />
             </button>
           </div>

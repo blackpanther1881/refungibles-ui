@@ -118,7 +118,7 @@ stroke: #ececec;
 
 
 .DialogOverlay {
-  background-color: #00000099;
+  background-color: #000000CC;
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
