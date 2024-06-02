@@ -329,3 +329,15 @@ stroke: #ececec;
 }
 
 
+/* sidebar */
+.close.offCanvas, .show.offCanvas{
+  transition: transform 0.4s ease-in-out;
+}
+
+.close.offCanvas {
+  transform: translateX(100%);
+}
+
+.show.offCanvas {
+  transform: none;
+}

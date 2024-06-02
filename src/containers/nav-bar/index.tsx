@@ -8,6 +8,7 @@ import WalletModal from "@/containers/nav-bar/wallet-modal";
 import { useAppStore } from "@/store";
 import { useShallow } from "zustand/react/shallow";
 import { stringTruncate } from "@/utils/number";
+import SideDrawer from "@/containers/nav-bar/side-drawer";
 
 interface NavListProps {
   name: string;
@@ -29,6 +30,7 @@ const getActiveNav = (value: string, pathName: string) => {
 
 const NavBar = () => {
   const [showWalletModal, setShowWalletModal] = useState(false);
+  const [walletInfoSlide, setWalletInfoSlide] = useState(false);
   const { walletData } = useAppStore(
     useShallow((state) => ({
       walletData: state.walletData.walletInfo
@@ -111,9 +113,15 @@ const NavBar = () => {
                   ? stringTruncate(walletData.account, 6)
                   : "Connect Wallet"
               }
-              onClick={() => {
-                setShowWalletModal(true);
-              }}
+              onClick={
+                walletData.walletConnection
+                  ? () => {
+                      setWalletInfoSlide(true);
+                    }
+                  : () => {
+                      setShowWalletModal(true);
+                    }
+              }
             />
           </div>
         </div>
@@ -125,6 +133,50 @@ const NavBar = () => {
           }}
         />
       ) : null}
+      <div
+        className={`${
+          walletInfoSlide ? "transform-none" : "translate-x-full"
+        } fixed top-0 right-0 z-40 w-[300px] h-screen transition-transform bg-[#000000]
+               menu-open
+               `}
+        id="navbarCollapse"
+      >
+        <div className={"px-4 py-4 flex items-center justify-between"}>
+          <Button
+            className={`w-[200px] md:py-2 md:text-sm flex items-center justify-center`}
+            type="secondary"
+            size="medium"
+            disabled={false}
+            content={
+              walletData.walletConnection
+                ? stringTruncate(walletData.account, 6)
+                : "Connect Wallet"
+            }
+            onClick={
+              walletData.walletConnection
+                ? () => {
+                    setWalletInfoSlide(true);
+                  }
+                : () => {
+                    setShowWalletModal(true);
+                  }
+            }
+          />
+          <p
+            className={"text-white-600 cursor-pointer"}
+            onClick={() => {
+              setWalletInfoSlide(false);
+            }}
+          >
+            <Icon
+              iconName={"close"}
+              viewClass="search !w-[13px]  fill-[#9d9d9d] h-[13px]"
+            />
+          </p>
+        </div>
+
+        <SideDrawer />
+      </div>
     </div>
   );
 };
