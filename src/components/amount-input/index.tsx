@@ -52,6 +52,9 @@ export const AmountInput = ({
   const selectedToken = watch(tokenKey);
 
   console.log(selectedToken, "selectedToken");
+  const amountButtonHandler = (value) => {
+    setValue(type, value);
+  };
   return (
     <div
       className={`px-6 py-[16px] bg-[#E3E3E31A] rounded-md md:p-3 ${className}`}
@@ -63,8 +66,26 @@ export const AmountInput = ({
           <p className={"mr-2"}>{availableBlc}</p>
           {activeInput ? (
             <>
-              <p className={"px-2 py-1 rounded-md"}>Half</p>
-              <p className={"px-2 py-1 rounded-md"}>Max</p>
+              <p
+                className={`px-2 py-1 rounded-md cursor-pointer ${
+                  Number(availableBlc) <= 0 ? "pointer-events-none" : ""
+                }`}
+                onClick={() => {
+                  amountButtonHandler(Number(availableBlc) / 2);
+                }}
+              >
+                Half
+              </p>
+              <p
+                className={`px-2 py-1 rounded-md cursor-pointer ${
+                  Number(availableBlc) <= 0 ? "pointer-events-none" : ""
+                }`}
+                onClick={() => {
+                  amountButtonHandler(availableBlc);
+                }}
+              >
+                Max
+              </p>
             </>
           ) : null}
         </div>

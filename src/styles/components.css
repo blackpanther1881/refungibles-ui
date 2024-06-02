@@ -66,16 +66,16 @@ h3 {
 
 }
 .AccordionContent[data-state='open'] {
-    animation: slideDown 500ms ease-in;
+    animation: slideDown 300ms ease-in;
 }
 .AccordionContent[data-state='closed'] {
-    animation: slideUp 500ms ease-out;
+    animation: slideUp 300ms ease-out;
 }
 
 
 .AccordionChevron {
     color: #000000;
-    transition: transform 500ms ease-in;
+    transition: transform 300ms ease-in;
 }
 
 .AccordionTrigger[data-state='open'] > .AccordionChevron {
@@ -87,13 +87,13 @@ h3 {
         height: 0;
     }
     to {
-        height: 100px;
+        height: 120px;
     }
 }
 
 @keyframes slideUp {
     from {
-        height: 100px;
+        height: 120px;
     }
     to {
         height: 0;

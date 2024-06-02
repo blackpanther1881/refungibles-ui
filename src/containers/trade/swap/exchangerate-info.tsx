@@ -1,7 +1,15 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
+import PriceChart from "@/containers/trade/swap/price-chart";
+import Icon from "@/components/Icon";
+import React, { useState } from "react";
 
 const ExchangeRateInfo = () => {
+  const [accordionState, setAccordionState] = useState(false);
+  const accordionHandler = (value: string) => {
+    console.log(value, "accordionHandler");
+    setAccordionState(value === "price-info");
+  };
   return (
     <div className={"mt-4"}>
       <div>
@@ -10,8 +18,9 @@ const ExchangeRateInfo = () => {
           type="single"
           // defaultValue="item-1"
           collapsible
+          onValueChange={accordionHandler}
         >
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="price-info">
             <Accordion.AccordionTrigger className="AccordionTrigger w-full">
               <div
                 className={
@@ -19,13 +28,33 @@ const ExchangeRateInfo = () => {
                 }
               >
                 <p className={"text-white-200"}>1 Doodle = 2.5 XRED</p>
-                <p>Show Price Info</p>
+                <p className={"flex items-center"}>
+                  <Icon
+                    viewClass={`ml-4 !w-[10px] mr-2 ${
+                      accordionState ? "rotate-180" : "rotate-0"
+                    } ease-in duration-200 `}
+                    iconName="chevron"
+                  />
+                  {accordionState ? "Hide Price Info" : "Show Price Info"}
+                </p>
               </div>
             </Accordion.AccordionTrigger>
             <Accordion.AccordionContent className="AccordionContent">
-              <div className={"p-4"}>
-                Yes. It's unstyled by default, giving you freedom over the look
-                and feel.
+              <div className={"px-5 py-4"}>
+                <div className={"flex justify-between items-center mb-3"}>
+                  <p className={"text-sm text-white-200"}>Price Impact</p>
+                  <p className={"text-sm text-white-200"}> 0.1%</p>
+                </div>
+                <div className={"flex justify-between items-center mb-3"}>
+                  <p className={"text-sm text-white-200"}>Minimum Received</p>
+                  <p className={"text-sm text-white-200"}>1.589236 μDoodle</p>
+                </div>
+                <div className={"flex justify-between items-center"}>
+                  <p className={"text-sm text-white-200"}>
+                    Max Transaction Fee [?]
+                  </p>
+                  <p className={"text-sm text-white-200"}>0.000305 μC721</p>
+                </div>
               </div>
             </Accordion.AccordionContent>
           </Accordion.Item>

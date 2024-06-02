@@ -131,7 +131,6 @@ const CustomAreaChart = ({
           })}
         </defs>
         <CartesianGrid vertical={false} strokeDasharray="8 8" />
-
         <Tooltip content={<CustomTooltip tooltipUnit={tooltipUnit} />} />
         {yAxisDataKeys.map((dataKey, index) => {
           return (

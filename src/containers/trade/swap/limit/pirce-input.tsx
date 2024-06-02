@@ -88,7 +88,7 @@ const PriceInput = () => {
           className={" text-white-200 items-center text-sm cursor-pointer"}
           onClick={handleSwitch}
         >
-          <Icon viewClass={` !w-[20px]`} iconName="close" />
+          <Icon viewClass={` !w-[20px]`} iconName="reverse" />
         </div>
       </div>
 
@@ -142,10 +142,10 @@ const PriceInput = () => {
         {percentageList.map((item, index) => (
           <div
             key={index}
-            className={`cursor-pointer border border-transparent px-2 py-[2px] text-white-200 text-sm ${
+            className={`cursor-pointer border px-2 py-[2px] text-white-200 text-sm ${
               item.value === activePercent.value
-                ? " border-[#01E4EB] rounded-md"
-                : ""
+                ? "border-[#01E4EB] bg-red rounded-md bg-[#FFFFFF4D] text-white-600"
+                : "border-transparent "
             }`}
             onClick={() => {
               handleLimitSelection(item.value);

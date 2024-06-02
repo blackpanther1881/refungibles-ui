@@ -3,6 +3,7 @@ import * as Tabs from "@radix-ui/react-tabs";
 import Market from "@/containers/trade/swap/market";
 import Limit from "@/containers/trade/swap/limit";
 import ExchangeRateInfo from "@/containers/trade/swap/exchangerate-info";
+import PriceChart from "@/containers/trade/swap/price-chart";
 
 interface Props {
   sourcePath: string;
@@ -70,6 +71,22 @@ const Swap = ({ sourcePath }: Props) => {
         </div>
       </Tabs.Root>
       <ExchangeRateInfo />
+      <div className={"px-5 py-4 bg-[#FFFFFF1A] rounded-md mt-4"}>
+        <div className={"flex items-center justify-between mb-4"}>
+          <div className={""}>
+            <p className={"text-xl text-white-600"}>Doodle</p>
+            <p className={"text-xsm text-white-200"}>Doodle</p>
+          </div>
+          <PriceChart />
+        </div>
+        <div className={"flex items-center justify-between"}>
+          <div className={""}>
+            <p className={"text-xl text-white-600"}>Doodle</p>
+            <p className={"text-xsm text-white-200"}>Doodle</p>
+          </div>
+          <PriceChart />
+        </div>
+      </div>
     </div>
   );
 };
