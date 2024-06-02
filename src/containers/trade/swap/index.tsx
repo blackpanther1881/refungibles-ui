@@ -18,7 +18,7 @@ const Swap = ({ sourcePath }: Props) => {
       {sourcePath === "home" ? (
         <div
           className={
-            "rounded-xl py-[23px] px-[35px] bg-[#FFFFFF1A] text-white-700 mt-4"
+            "rounded-xl py-[23px] px-[35px] bg-[#FFFFFF1A] text-white-700 mt-4 hidden"
           }
         >
           <h1 className={"text-[26px] mb-2"}>Welcome to Refungibles</h1>
@@ -29,7 +29,7 @@ const Swap = ({ sourcePath }: Props) => {
         </div>
       ) : null}
       <Tabs.Root
-        className="bg-[#FFFFFF1A] rounded-xl p-2 mt-[10px]"
+        className="bg-[#FFFFFF1A] rounded-xl p-2 mt-[14px]"
         defaultValue="market"
         onValueChange={customHandler}
       >
