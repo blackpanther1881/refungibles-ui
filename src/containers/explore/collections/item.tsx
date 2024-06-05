@@ -6,6 +6,7 @@ interface Props {
   collection: Collection;
 }
 const CollectionItems = ({ collection }: Props) => {
+  if (!collection) return;
   return (
     <div>
       <div className={"flex items-baseline mb-4"}>

@@ -13,8 +13,11 @@ const CollectionInfo = ({ nftID }: Props) => {
     setActiveStakeTab(value);
   };
 
-  const collection = dummyCollections.find((item) => item.nftID === nftID);
+  const collection = dummyCollections.find(
+    (item) => item.nftID === Number(nftID)
+  );
 
+  console.log(collection, "collection-", nftID, dummyCollections);
   return (
     <div className={"max-w-[1440px] mx-auto"}>
       <Tabs.Root
