@@ -8,3 +8,9 @@ declare global {
     okxwallet: any;
   }
 }
+
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}

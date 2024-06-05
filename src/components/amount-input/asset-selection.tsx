@@ -4,7 +4,6 @@ import Icon from "@/components/Icon";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AssetProps, TokenList } from "@/utils/types";
 import { useFormContext } from "react-hook-form";
-import Dropdown from "@/components/base/dropdown";
 import NetworkDropdown from "@/components/amount-input/network-dropdown";
 
 interface Props {

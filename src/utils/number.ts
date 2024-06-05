@@ -1,4 +1,5 @@
 import { BigNumber } from "bignumber.js";
+import _ from "lodash";
 
 export function formatNumberWithCommas(str: string | number) {
   const parts = str.toString().split(".");
@@ -21,14 +22,13 @@ export function getAmountWei(amount?: string, decimals = 6) {
   }
 }
 
-
 export const emptyFunc = () => ({});
 
 export const removeCommas = (str: any) =>
-    _.replace(str, new RegExp(",", "g"), "");
+  _.replace(str, new RegExp(",", "g"), "");
 
 export const reverseString = (str: any) =>
-    removeCommas(_.toString(_.reverse(_.toArray(str))));
+  removeCommas(_.toString(_.reverse(_.toArray(str))));
 
 export const recursiveReverse = (input: any): string => {
   if (_.isArray(input))
@@ -73,17 +73,17 @@ export const formatNumber = (v = 0, size = 3, decimalLength = 6): string => {
 export const stringTruncate = (str: string, length = 7): string => {
   if (str.length > 30) {
     return (
-        str.substring(0, length) +
-        "..." +
-        str.substring(str.length - length, str.length)
+      str.substring(0, length) +
+      "..." +
+      str.substring(str.length - length, str.length)
     );
   }
   return str;
 };
 
 export const truncateToFixedDecimalPlaces = (
-    num: number | string,
-    decimalPlaces = 6
+  num: number | string,
+  decimalPlaces = 6
 ): number => {
   const regexString = "^-?\\d+(?:\\.\\d{0,dp})?";
   const regexToMatch = regexString.replace("dp", `${decimalPlaces}`);

@@ -52,7 +52,8 @@ export const AmountInput = ({
   const selectedToken = watch(tokenKey);
 
   console.log(selectedToken, "selectedToken");
-  const amountButtonHandler = (value) => {
+
+  const amountButtonHandler = (value: any) => {
     setValue(type, value);
   };
   return (

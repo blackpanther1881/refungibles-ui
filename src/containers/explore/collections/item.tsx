@@ -52,8 +52,9 @@ const CollectionItems = ({ collection }: Props) => {
       </div>
       <div className={"flex gap-4 flex-wrap"}>
         {collection.collections.length &&
-          collection.collections.map((item) => (
+          collection.collections.map((item, index) => (
             <div
+              key={index}
               className={
                 "rounded-md bg-[#D9D9D933] rounded-bl-md rounded-br-md relative"
               }

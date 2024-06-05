@@ -28,8 +28,8 @@ const percentageList = [
 
 const PriceInput = () => {
   const [showAssetDialog, setShowAssetDialog] = useState(false);
-  const [primaryToken, setPrimaryToken] = useState(null);
-  const [secondaryToken, setSecondaryToken] = useState(null);
+  const [primaryToken, setPrimaryToken] = useState<any>(null);
+  const [secondaryToken, setSecondaryToken] = useState<any>(null);
 
   const [activePercent, setActivePercent] = useState(
     percentageList.find((item) => item.value === 0)
@@ -44,14 +44,15 @@ const PriceInput = () => {
     setValue("marketPrice", initialPrice);
     setSecondaryToken(tokenIn);
     setPrimaryToken(tokenOut);
-  }, [tokenOut]);
+  }, [tokenOut, tokenIn]);
 
   const handleLimitChange = () => {};
 
-  const handleLimitSelection = (value) => {
+  const handleLimitSelection = (value: any) => {
     setActivePercent(percentageList.find((item) => item.value === value));
     if (value !== 0) {
-      const percentage = (value / 100) * Number(initialPrice).toFixed(6);
+      const percentage =
+        (Number(value) / 100) * Number(Number(initialPrice).toFixed(6));
       setValue("marketPrice", 22 + Number(percentage));
     } else {
       setValue("marketPrice", 22);
@@ -71,14 +72,14 @@ const PriceInput = () => {
           {secondaryToken ? (
             <div className="flex items-center mx-1">
               <Image
-                src={secondaryToken && secondaryToken.imgUrl}
-                alt={secondaryToken && secondaryToken.name}
+                src={secondaryToken && secondaryToken?.imgUrl}
+                alt={secondaryToken && secondaryToken?.name}
                 className={`md:!w-[24] md:!h-[24] relative mr-2`}
                 width={18}
                 height={18}
               />
               <span className="text-base">
-                {secondaryToken && secondaryToken.name}
+                {secondaryToken && secondaryToken?.name}
               </span>
             </div>
           ) : null}{" "}
@@ -100,6 +101,7 @@ const PriceInput = () => {
           placeholder={"0"}
           value={watch("marketPrice")}
           disable={false}
+          name={"price-input"}
           required={false}
           title={"Amount must have value more than 0.01"}
           className={`h-[46px] max-w-[140px] mr-auto md:max-w-[100px] !text-white-600`}
@@ -143,7 +145,7 @@ const PriceInput = () => {
           <div
             key={index}
             className={`cursor-pointer border px-2 py-[2px] text-white-200 text-sm ${
-              item.value === activePercent.value
+              item.value === activePercent!.value
                 ? "border-[#01E4EB] bg-red rounded-md bg-[#FFFFFF4D] text-white-600"
                 : "border-transparent "
             }`}

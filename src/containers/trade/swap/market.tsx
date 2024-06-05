@@ -6,10 +6,15 @@ import Icon from "@/components/Icon";
 import { Button } from "@/components/base/buttons";
 import { Spinner } from "@/components/base/spinner";
 import { dummyNetworkList, dummyTokenList } from "@/utils/config";
+import { AssetProps } from "@/utils/types";
 
 type StakeFormFields = {
   amountOut: string;
   amountIn: string;
+  tokenIn: AssetProps;
+  tokenOut: AssetProps;
+  tokenInNetwork: any;
+  tokenOutNetwork: any;
 };
 
 const Market = () => {

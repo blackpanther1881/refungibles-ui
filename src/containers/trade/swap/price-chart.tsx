@@ -2,7 +2,7 @@ import { dummyChartData } from "@/utils/config";
 import React from "react";
 import { LineChart, Line, Tooltip } from "recharts";
 
-export const CustomTooltip = ({ active, payload, label }) => {
+export const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom-tooltip bg-black-400 rounded-md p-2">

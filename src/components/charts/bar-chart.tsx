@@ -70,7 +70,7 @@ const CustomBarChart = ({
   mirror = false,
   unit = "",
   tooltipUnit = { unit: "", position: "end" }
-}) => {
+}: any) => {
   return (
     <ResponsiveContainer width="103%" height={height}>
       <BarChart
@@ -90,7 +90,7 @@ const CustomBarChart = ({
           content={<CustomTooltip tooltipUnit={tooltipUnit} />}
           // shared={false}
         />
-        {yAxisDataKeys.map((dataKey, index) => {
+        {yAxisDataKeys.map((dataKey: any) => {
           return (
             <Bar
               key={dataKey.key}
@@ -110,7 +110,7 @@ const CustomBarChart = ({
           tick={{ fontSize: "12px" }}
           tickMargin={10}
         />
-        {yAxisDataKeys.map((dataKey, index) => {
+        {yAxisDataKeys.map((dataKey: any) => {
           return (
             <YAxis
               key={dataKey.key}

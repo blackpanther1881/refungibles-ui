@@ -1,7 +1,13 @@
 import { ethers } from "ethers";
 import { useAppStore } from "@/store";
 
-export const handleMetamaskWallet = async (actions) => {
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
+
+export const handleMetamaskWallet = async (actions: any) => {
   try {
     let ethereum;
     if (window.ethereum?.providers) {
@@ -20,7 +26,7 @@ export const handleMetamaskWallet = async (actions) => {
     if (accounts && accounts.length !== 0) {
       const account = accounts[0];
       const provider = new ethers.BrowserProvider(ethereum);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       useAppStore.getState().walletDataActions.setWalletInfo({
         walletConnection: true,
         signer: signer,

@@ -3,17 +3,11 @@ import React from "react";
 import { dummyNetworkList } from "@/utils/config";
 import Image from "next/image";
 import Icon from "@/components/Icon";
-import { AssetProps, TokenList } from "@/utils/types";
 interface Props {
-  networkKey: string;
   selectedItem: any;
   onSelectHandler: (network: any) => void;
 }
-const NetworkDropdown = ({
-  networkKey,
-  onSelectHandler,
-  selectedItem
-}: Props) => {
+const NetworkDropdown = ({ onSelectHandler, selectedItem }: Props) => {
   return (
     <Dropdown
       content={

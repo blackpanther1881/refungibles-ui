@@ -97,7 +97,7 @@ const CustomAreaChart = ({
     setEndIndex(totalData?.length - 1);
   }, [chartDuration, totalData?.length]);
 
-  const handleBrushChange = (dataIndex) => {
+  const handleBrushChange = (dataIndex: any) => {
     setStartIndex(dataIndex[0]);
     setEndIndex(dataIndex[1]);
     setBrushData(totalData.slice(dataIndex[0], dataIndex[1] + 1));
@@ -114,7 +114,7 @@ const CustomAreaChart = ({
         }}
       >
         <defs>
-          {yAxisDataKeys.map((dataKey, index) => {
+          {yAxisDataKeys.map((dataKey: any) => {
             return (
               <linearGradient
                 id={`color${dataKey.key}`}
@@ -132,7 +132,7 @@ const CustomAreaChart = ({
         </defs>
         <CartesianGrid vertical={false} strokeDasharray="8 8" />
         <Tooltip content={<CustomTooltip tooltipUnit={tooltipUnit} />} />
-        {yAxisDataKeys.map((dataKey, index) => {
+        {yAxisDataKeys.map((dataKey: any) => {
           return (
             <Line
               key={dataKey.key}
@@ -146,7 +146,7 @@ const CustomAreaChart = ({
         })}
         {/* Keep Axes after graph so that it doesn't overlap with the graph https://github.com/recharts/recharts/issues/566#issuecomment-342402723 */}
         <XAxis dataKey={xAxisDataKey} tick={{ fontSize: "12px" }} />
-        {yAxisDataKeys.map((dataKey, index) => {
+        {yAxisDataKeys.map((dataKey: any) => {
           return (
             <Area
               key={dataKey.key}
@@ -158,7 +158,7 @@ const CustomAreaChart = ({
             />
           );
         })}
-        {yAxisDataKeys.map((dataKey, index) => {
+        {yAxisDataKeys.map((dataKey: any) => {
           return (
             <YAxis
               key={dataKey.key}
@@ -200,7 +200,7 @@ const CustomAreaChart = ({
                 bottom: 0
               }}
             >
-              {yAxisDataKeys.map((dataKey, index) => {
+              {yAxisDataKeys.map((dataKey: any) => {
                 return (
                   <Area
                     key={dataKey.key}

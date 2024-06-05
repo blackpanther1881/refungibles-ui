@@ -8,9 +8,9 @@ export default function CollectionInfoPage() {
   const { nftId } = router.query;
   const pools: any[] = [];
   return (
-    <PageTemplate pageTitle={"Collection"}>
+    <PageTemplate title={"Collection"} className={""}>
       {/*<PoolInfoContainer />*/}
-      <CollectionInfo nftID={nftId | 0} />
+      <CollectionInfo nftID={nftId ? nftId : 0} />
     </PageTemplate>
   );
 }

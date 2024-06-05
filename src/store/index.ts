@@ -8,21 +8,18 @@ import {
   InitialDataSlice
 } from "./slices/initial-data-slice";
 import {
-    TransactionSlice,
-    createTransactionSlice
+  TransactionSlice,
+  createTransactionSlice
 } from "./slices/transaction-info-slice";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 
-type StoreState = BalanceSlice &
-  WalletSlice &
-  InitialDataSlice
+type StoreState = BalanceSlice & WalletSlice & InitialDataSlice;
 
 export const useAppStore = createWithEqualityFn<StoreState>()(
   (...a) => ({
     ...createBalanceSlice(...a),
     ...createWalletSlice(...a),
-    ...createInitialDataSlice(...a),
-      ...createTransactionSlice(...a),
+    ...createInitialDataSlice(...a)
   }),
   shallow
 );

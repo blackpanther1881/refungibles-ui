@@ -15,10 +15,17 @@ import { InputText } from "@/components/base/input";
 import Image from "next/image";
 import AssetSelection from "@/components/amount-input/asset-selection";
 import PriceInput from "@/containers/trade/swap/limit/pirce-input";
+import { AssetProps } from "@/utils/types";
 
 type StakeFormFields = {
   amountOut: string;
   amountIn: string;
+  tokenIn: AssetProps;
+  tokenOut: AssetProps;
+  tokenInNetwork: any;
+  tokenOutNetwork: any;
+  marketPrice: any;
+  limitPrice: any;
 };
 
 const Limit = () => {
