@@ -16,6 +16,7 @@ import Image from "next/image";
 import AssetSelection from "@/components/amount-input/asset-selection";
 import PriceInput from "@/containers/trade/swap/limit/pirce-input";
 import { AssetProps } from "@/utils/types";
+import LimitReview from "@/containers/trade/swap/limit/limit-review";
 
 type StakeFormFields = {
   amountOut: string;
@@ -31,7 +32,7 @@ type StakeFormFields = {
 const Limit = () => {
   const selectedItem = dummyTokenList["ethereum"][0];
   const selectedOutItem = dummyTokenList["optimism"][2];
-
+  const [show, setShow] = useState(false);
   const methods = useForm<StakeFormFields>({
     mode: "all",
     defaultValues: {
@@ -99,10 +100,19 @@ const Limit = () => {
                 "Swap"
               )
             }
-            onClick={() => {}}
+            onClick={() => {
+              setShow(true);
+            }}
           />
         </div>
       </form>
+      {show ? (
+        <LimitReview
+          onClose={() => {
+            setShow(false);
+          }}
+        />
+      ) : null}
     </FormProvider>
   );
 };
