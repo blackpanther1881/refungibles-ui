@@ -5,11 +5,19 @@ import Limit from "@/containers/trade/swap/limit";
 import ExchangeRateInfo from "@/containers/trade/swap/exchangerate-info";
 import PriceChart from "@/containers/trade/swap/price-chart";
 import SwapTabs from "@/containers/trade/swap/tabs";
+import { useAppStore } from "@/store";
+import { useShallow } from "zustand/react/shallow";
 
 interface Props {
   sourcePath: string;
 }
 const Swap = ({ sourcePath }: Props) => {
+  const { swapInToken, swapOutToken } = useAppStore(
+    useShallow((state) => ({
+      swapInToken: state.swapTransaction.swapInToken,
+      swapOutToken: state.swapTransaction.swapOutToken
+    }))
+  );
   return (
     <div className={"w-[502px] mx-auto"}>
       {sourcePath === "home" ? (
@@ -25,20 +33,24 @@ const Swap = ({ sourcePath }: Props) => {
           </p>
         </div>
       ) : null}
-     <SwapTabs/>
+      <SwapTabs />
       <ExchangeRateInfo />
       <div className={"px-5 py-4 bg-[#FFFFFF1A] rounded-md mt-4"}>
         <div className={"flex items-center justify-between mb-4"}>
           <div className={""}>
-            <p className={"text-xl text-white-600"}>Doodle</p>
-            <p className={"text-xsm text-white-200"}>Doodle</p>
+            <p className={"text-xl text-white-600"}>{swapInToken.name}</p>
+            <p className={"text-xsm text-white-200"}>
+              {swapInToken.identifier}
+            </p>
           </div>
           <PriceChart />
         </div>
         <div className={"flex items-center justify-between"}>
           <div className={""}>
-            <p className={"text-xl text-white-600"}>Doodle</p>
-            <p className={"text-xsm text-white-200"}>Doodle</p>
+            <p className={"text-xl text-white-600"}>{swapOutToken.name}</p>
+            <p className={"text-xsm text-white-200"}>
+              {swapOutToken.identifier}
+            </p>
           </div>
           <PriceChart />
         </div>

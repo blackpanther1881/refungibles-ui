@@ -7,6 +7,8 @@ import { Button } from "@/components/base/buttons";
 import { Spinner } from "@/components/base/spinner";
 import { dummyNetworkList, dummyTokenList } from "@/utils/config";
 import { AssetProps } from "@/utils/types";
+import { useAppStore } from "@/store";
+import { useShallow } from "zustand/react/shallow";
 
 type StakeFormFields = {
   amountOut: string;
@@ -20,6 +22,14 @@ type StakeFormFields = {
 const Market = () => {
   const selectedItem = dummyTokenList["ethereum"][0];
   const selectedOutItem = dummyTokenList["optimism"][2];
+
+  const { swapInToken, setSwapInToken, setSwapOutToken } = useAppStore(
+    useShallow((state) => ({
+      swapInToken: state.swapTransaction.swapInToken,
+      setSwapInToken: state.swapTransactionActions.setSwapInToken,
+      setSwapOutToken: state.swapTransactionActions.setSwapOutToken
+    }))
+  );
 
   const methods = useForm<StakeFormFields>({
     mode: "all",
@@ -37,6 +47,14 @@ const Market = () => {
   const isMobile = false;
   const onSubmit: SubmitHandler<StakeFormFields> = (data) => console.log(data);
 
+  const tokenChangeHandler = (tokenKey: string, token: any) => {
+    if (tokenKey === "tokenIn") {
+      setSwapInToken(token);
+    } else {
+      setSwapOutToken(token);
+    }
+  };
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -48,6 +66,7 @@ const Market = () => {
           tokenKey={"tokenIn"}
           networkKey={"tokenInNetwork"}
           className={"!rounded-tl-[0px]"}
+          tokeChange={tokenChangeHandler}
         />
         <div className="flex w-full items-center justify-center relative">
           <div

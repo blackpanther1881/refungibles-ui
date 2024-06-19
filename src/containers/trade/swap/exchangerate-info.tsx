@@ -3,6 +3,8 @@ import { AccordionContent, AccordionTrigger } from "@radix-ui/react-accordion";
 import PriceChart from "@/containers/trade/swap/price-chart";
 import Icon from "@/components/Icon";
 import React, { useState } from "react";
+import { useAppStore } from "@/store";
+import { useShallow } from "zustand/react/shallow";
 
 const ExchangeRateInfo = () => {
   const [accordionState, setAccordionState] = useState(false);
@@ -10,6 +12,13 @@ const ExchangeRateInfo = () => {
     console.log(value, "accordionHandler");
     setAccordionState(value === "price-info");
   };
+  const { swapInToken, swapOutToken } = useAppStore(
+    useShallow((state) => ({
+      swapInToken: state.swapTransaction.swapInToken,
+      swapOutToken: state.swapTransaction.swapOutToken
+    }))
+  );
+
   return (
     <div className={"mt-4"}>
       <div>
@@ -27,7 +36,9 @@ const ExchangeRateInfo = () => {
                   "w-full flex items-center justify-between text-white-200"
                 }
               >
-                <p className={"text-white-200"}>1 Doodle = 2.5 XRED</p>
+                <p className={"text-white-200"}>
+                  1 {swapInToken.name} = 2.5 {swapOutToken.name}
+                </p>
                 <p className={"flex items-center"}>
                   <Icon
                     viewClass={`ml-4 !w-[10px] mr-2 ${

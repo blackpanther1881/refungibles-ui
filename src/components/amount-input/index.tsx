@@ -16,6 +16,7 @@ export interface Props {
   tokenKey?: string;
   networkKey?: string;
   label: string;
+  tokeChange?: (tokenKey: string, token: any) => void;
 }
 
 export const AmountInput = ({
@@ -25,7 +26,8 @@ export const AmountInput = ({
   type = "amountIn",
   tokenKey = "tokenIn",
   networkKey = "tokenInNetwork",
-  label
+  label,
+  tokeChange
 }: Props) => {
   const { register, getValues, setValue, watch } = useFormContext();
   const [showAssetDialog, setShowAssetDialog] = useState(false);
@@ -47,6 +49,9 @@ export const AmountInput = ({
     console.log(item, "selected-item");
     setValue(tokenKey, item);
     setShowAssetDialog(false);
+    if (tokeChange) {
+      tokeChange(tokenKey, item);
+    }
   };
 
   const selectedToken = watch(tokenKey);
