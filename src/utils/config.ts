@@ -1,4 +1,4 @@
-import { AssetProps, Collection, TokenList } from "@/utils/types";
+import { AssetProps, Collection, Pool, TokenList } from "@/utils/types";
 
 export const dummyTokenList: TokenList = {
   ethereum: [
@@ -437,5 +437,36 @@ export const dummyChartData = [
     date: "29 May",
     monthly: "May '24",
     transaction_count: 4928
+  }
+];
+
+export const dummyPools: Pool[] = [
+  {
+    poolID: 1,
+    pool_combination: {
+      token1: "Weth",
+      token1Img: "/images/dummy/milady1.png",
+      token2: "Mil",
+      token2Img: "/images/dummy/milady2.png"
+    },
+    transactions: "2sec",
+    tvl: "33",
+    volume_24h: "$343434",
+    volume_7day: "$3434342323",
+    apr_1day: "5%"
+  },
+  {
+    poolID: 2,
+    pool_combination: {
+      token1: "Mil",
+      token1Img: "/images/dummy/milady1.png",
+      token2: "Weth",
+      token2Img: "/images/dummy/milady2.png"
+    },
+    transactions: "2sec",
+    tvl: "33",
+    volume_24h: "$343434",
+    volume_7day: "$3434342323",
+    apr_1day: "5%"
   }
 ];

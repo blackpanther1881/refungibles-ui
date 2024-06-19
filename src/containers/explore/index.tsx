@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as Tabs from "@radix-ui/react-tabs";
 import TableDummy from "@/components/base/table/table-dummy";
 import CollectionsTable from "@/containers/explore/collections";
+import PoolsTable from "@/containers/explore/pools";
 
 const ExploreTabs = () => {
   const [activeStakeTab, setActiveStakeTab] = useState<any>("collections");
@@ -9,10 +10,7 @@ const ExploreTabs = () => {
     setActiveStakeTab(value);
   };
   return (
-    <Tabs.Root
-      defaultValue="collections"
-      onValueChange={customHandler}
-    >
+    <Tabs.Root defaultValue="collections" onValueChange={customHandler}>
       <div className={"bg-[#D9D9D91A] mb-4"}>
         <div className={"max-w-[1440px] mx-auto"}>
           <Tabs.List
@@ -22,10 +20,10 @@ const ExploreTabs = () => {
             <Tabs.Trigger
               className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
           font-medium text-[18px] leading-[21.8px] ${
-                activeStakeTab === "collections"
-                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
-                  : ""
-              }`}
+            activeStakeTab === "collections"
+              ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+              : ""
+          }`}
               value="collections"
             >
               Collections
@@ -33,10 +31,10 @@ const ExploreTabs = () => {
             <Tabs.Trigger
               className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
           font-medium text-[18px] leading-[21.8px] ${
-                activeStakeTab === "pools"
-                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
-                  : ""
-              }`}
+            activeStakeTab === "pools"
+              ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+              : ""
+          }`}
               value="pools"
             >
               Pools
@@ -44,10 +42,10 @@ const ExploreTabs = () => {
             <Tabs.Trigger
               className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
           font-medium text-[18px] leading-[21.8px] ${
-                activeStakeTab === "transactions"
-                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
-                  : ""
-              }`}
+            activeStakeTab === "transactions"
+              ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+              : ""
+          }`}
               value="transactions"
             >
               Transactions
@@ -60,14 +58,14 @@ const ExploreTabs = () => {
           <CollectionsTable />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="pools">
-          <p>Pools</p>
+          <PoolsTable />
         </Tabs.Content>
         <Tabs.Content className="TabsContent" value="transactions">
           <p>Transactions</p>
         </Tabs.Content>
       </div>
     </Tabs.Root>
-);
+  );
 };
 
 export default ExploreTabs;

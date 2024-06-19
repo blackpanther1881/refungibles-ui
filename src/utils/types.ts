@@ -18,6 +18,7 @@ interface CollectionInfo {
   id: number | string;
   price: string;
 }
+
 export type Collection = {
   collections: CollectionInfo[];
   avatar: string;
@@ -31,4 +32,19 @@ export type Collection = {
   reserve_ratio: string;
   nftID: any;
   description: any;
+};
+
+export type Pool = {
+  poolID: string | number;
+  pool_combination: {
+    token1: string;
+    token1Img: string;
+    token2: string;
+    token2Img: string;
+  };
+  transactions: string | number;
+  tvl: string | number;
+  volume_24h: string | number;
+  volume_7day: string | number;
+  apr_1day: string | number;
 };
