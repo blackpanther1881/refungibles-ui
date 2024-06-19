@@ -5,7 +5,7 @@ import CustomAreaChart from "@/components/charts/area-chart";
 import { dummyChartData, dummyNetworkList } from "@/utils/config";
 import Dropdown from "@/components/base/dropdown";
 import CustomBarChart from "@/components/charts/bar-chart";
-import Swap from "@/containers/trade/swap";
+import SwapTabs from "@/containers/trade/swap/tabs";
 
 interface Props {
   collection: Collection;
@@ -161,7 +161,7 @@ const CollectionAnalytics = ({ collection }: Props) => {
           </div>
         </div>
         <div className={"w-[502px]"}>
-          <Swap sourcePath={"analytics"} />
+         <SwapTabs/>
         </div>
       </div>
     </div>

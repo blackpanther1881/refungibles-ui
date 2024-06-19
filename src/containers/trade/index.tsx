@@ -12,10 +12,9 @@ const Trade = () => {
         <div className={"max-w-[1440px] mx-auto"}>
           <Tabs.List
             className="TabsList flex justify-center items-center border-b-[2px] border-transparent"
-            aria-label="Manage your account"
           >
             <Tabs.Trigger
-              className={`TabsTrigger flex items-center justify-center text-white-600 text-base py-[24px] px-6
+              className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
           font-medium text-[18px] leading-[21.8px] ${
             activeStakeTab === "swap"
               ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
@@ -26,7 +25,7 @@ const Trade = () => {
               Swap
             </Tabs.Trigger>
             <Tabs.Trigger
-              className={`TabsTrigger flex items-center justify-center text-white-600 text-base py-[24px] px-6
+              className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
           font-medium text-[18px] leading-[21.8px] pointer-events-none ${
             activeStakeTab === "perps"
               ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"

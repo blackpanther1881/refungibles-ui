@@ -10,41 +10,52 @@ const ExploreTabs = () => {
   };
   return (
     <Tabs.Root
-      className="mt-[36px]"
       defaultValue="collections"
       onValueChange={customHandler}
     >
-      <div className={"max-w-[1440px] mx-auto"}>
-        <Tabs.List
-          className="TabsList flex justify-start items-center mb-[22px]"
-          aria-label="Manage your account"
-        >
-          <Tabs.Trigger
-            className={`TabsTrigger flex items-center justify-center text-white-200 px-6
-           text-[26px] ${
-             activeStakeTab === "collections" ? "text-white-700" : ""
-           }`}
-            value="collections"
+      <div className={"bg-[#D9D9D91A] mb-4"}>
+        <div className={"max-w-[1440px] mx-auto"}>
+          <Tabs.List
+            className="TabsList flex justify-center items-center border-b-[2px] border-transparent"
+            aria-label="Manage your account"
           >
-            Collections
-          </Tabs.Trigger>
-          <Tabs.Trigger
-            className={`TabsTrigger flex items-center justify-center text-white-200 px-6
-           text-[26px]  ${activeStakeTab === "pools" ? "text-white-700" : ""}`}
-            value="pools"
-          >
-            Pools
-          </Tabs.Trigger>
-          <Tabs.Trigger
-            className={`TabsTrigger flex items-center justify-center text-white-200 px-6
-           text-[26px]  ${
-             activeStakeTab === "transactions" ? "text-white-700" : ""
-           }`}
-            value="transactions"
-          >
-            Transactions
-          </Tabs.Trigger>
-        </Tabs.List>
+            <Tabs.Trigger
+              className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
+          font-medium text-[18px] leading-[21.8px] ${
+                activeStakeTab === "collections"
+                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+                  : ""
+              }`}
+              value="collections"
+            >
+              Collections
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
+          font-medium text-[18px] leading-[21.8px] ${
+                activeStakeTab === "pools"
+                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+                  : ""
+              }`}
+              value="pools"
+            >
+              Pools
+            </Tabs.Trigger>
+            <Tabs.Trigger
+              className={`TabsTrigger flex items-center justify-center text-white-600 py-[24px] px-6
+          font-medium text-[18px] leading-[21.8px] ${
+                activeStakeTab === "transactions"
+                  ? "border-b-[2px] border-[#FD9C3D] -mb-[2px]"
+                  : ""
+              }`}
+              value="transactions"
+            >
+              Transactions
+            </Tabs.Trigger>
+          </Tabs.List>
+        </div>
+      </div>
+      <div className={"max-w-[1240px] mx-auto"}>
         <Tabs.Content className="TabsContent" value="collections">
           <CollectionsTable />
         </Tabs.Content>
@@ -56,7 +67,7 @@ const ExploreTabs = () => {
         </Tabs.Content>
       </div>
     </Tabs.Root>
-  );
+);
 };
 
 export default ExploreTabs;

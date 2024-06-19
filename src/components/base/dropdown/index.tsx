@@ -16,24 +16,22 @@ const Dropdown = ({
   labelClass
 }: Props) => {
   return (
-    <div>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger asChild>
-          <button className={`${labelClass}`}>{label}</button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content
-            className={`DropdownMenuContent ${className}`}
-            sideOffset={5}
-            align={position!}
-          >
-            <DropdownMenu.Item className="DropdownMenuItem">
-              {content}
-            </DropdownMenu.Item>
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
-    </div>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button className={`${labelClass}`}>{label}</button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          className={`DropdownMenuContent ${className}`}
+          sideOffset={5}
+          align={position!}
+        >
+          <DropdownMenu.Item className="DropdownMenuItem">
+            {content}
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };
 

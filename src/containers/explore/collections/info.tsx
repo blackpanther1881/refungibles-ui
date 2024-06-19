@@ -29,7 +29,7 @@ const CollectionInfo = ({ nftID }: Props) => {
           <div className={"mb-6"}>
             <Tabs.List className="TabsList flex " aria-label="swap-form">
               <Tabs.Trigger
-                className={`TabsTrigger flex items-center justify-center text-white-600 text-base py-2 px-4
+                className={`TabsTrigger flex items-center justify-center text-white-600 py-2 px-4
           font-medium text-[18px] leading-[21.8px] ${
             activeStakeTab === "analytics"
               ? "border border-[#E3E3E31A] rounded-md "
@@ -40,7 +40,7 @@ const CollectionInfo = ({ nftID }: Props) => {
                 Analytics
               </Tabs.Trigger>
               <Tabs.Trigger
-                className={`TabsTrigger flex items-center justify-center text-white-600 text-base py-2 px-4
+                className={`TabsTrigger flex items-center justify-center text-white-600 py-2 px-4
           font-medium text-[18px] leading-[21.8px] ${
             activeStakeTab === "items"
               ? "border border-[#E3E3E31A] rounded-md"
