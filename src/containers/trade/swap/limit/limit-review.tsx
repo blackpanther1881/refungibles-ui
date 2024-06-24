@@ -13,12 +13,17 @@ interface Props {
 }
 
 const LimitReview = ({ onClose }: Props) => {
-  const [show, setShow] = useState(false);
+  const [reviewState, setReviewState] = useState<
+    "review" | "confirm" | "submitted"
+  >("review");
 
   const { watch, setValue } = useFormContext();
 
   useEffect(() => {}, []);
 
+  const submitHandler = () => {
+    setReviewState("confirm");
+  };
   return (
     <Dialog.Root open={true} defaultOpen={true}>
       <Dialog.Portal>
@@ -38,57 +43,76 @@ const LimitReview = ({ onClose }: Props) => {
               "h-auto rounded-lg flex-1 py-[2px] px-[2px] overflow-auto"
             }
           >
-            <div className={"overflow-auto flex flex-col"}>
-              <div className={"mb-4"}>
-                <p className={"text-white-200 font-medium text-sm"}>Sell</p>
-                <p className={"text-white-700 font-medium text-lg"}>3.3Mil</p>
-                <p className={"text-white-200 font-medium text-sm"}>$122</p>
-              </div>
-              <div className={"mb-4"}>
-                <p className={"text-white-200 font-medium text-sm"}>Buy</p>
-                <p className={"text-white-700 font-medium text-lg"}>3 Doodle</p>
-                <p className={"text-white-200 font-medium text-sm"}>$122</p>
-              </div>
-              <div className={"mb-2 flex justify-between"}>
-                <p className={"text-white-200 font-medium text-sm"}>
-                  Limit Price
+            {reviewState === "review" ? (
+              <div className={"overflow-auto flex flex-col"}>
+                <div className={"mb-4"}>
+                  <p className={"text-white-200 font-medium text-sm"}>Sell</p>
+                  <p className={"text-white-700 font-medium text-lg"}>3.3Mil</p>
+                  <p className={"text-white-200 font-medium text-sm"}>$122</p>
+                </div>
+                <div className={"mb-4"}>
+                  <p className={"text-white-200 font-medium text-sm"}>Buy</p>
+                  <p className={"text-white-700 font-medium text-lg"}>
+                    3 Doodle
+                  </p>
+                  <p className={"text-white-200 font-medium text-sm"}>$122</p>
+                </div>
+                <div className={"mb-2 flex justify-between"}>
+                  <p className={"text-white-200 font-medium text-sm"}>
+                    Limit Price
+                  </p>
+                  <p className={"text-white-700 font-medium text-sm"}>
+                    1Doodle = 1.3Mil
+                  </p>
+                </div>
+                <div className={"mb-2 flex justify-between"}>
+                  <p className={"text-white-200 font-medium text-sm"}>Expiry</p>
+                  <p className={"text-white-700 font-medium text-sm"}>
+                    June 4, 2024 at 4:09 PM
+                  </p>
+                </div>
+                <div className={"mb-2 flex justify-between"}>
+                  <p className={"text-white-200 font-medium text-sm"}>Fee</p>
+                  <p className={"text-white-700 font-medium text-sm"}>$0</p>
+                </div>
+                <div className={"mb-4 flex justify-between"}>
+                  <p className={"text-white-200 font-medium text-sm"}>
+                    Network Cost
+                  </p>
+                  <p className={"text-white-700 font-medium text-sm"}>$0</p>
+                </div>
+                <p className={"text-white-200 font-medium text-xsm mb-4"}>
+                  Please be aware that the execution for limits may vary based
+                  on real-time market fluctuations and Ethereum network
+                  congestion. Limit may not execute exactly when token reach the
+                  specified price. <br />
+                  Canceling a limit has a network cost.
                 </p>
-                <p className={"text-white-700 font-medium text-sm"}>
-                  1Doodle = 1.3Mil
+                <Button
+                  className={`w-full md:py-2 md:text-sm flex items-center justify-center`}
+                  type="primary"
+                  size="large"
+                  disabled={false}
+                  content={"Place Order"}
+                  onClick={submitHandler}
+                />
+              </div>
+            ) : (
+              <div className={"text-center"}>
+                <p className={"font-medium text-[24px] text-white-700"}>
+                  submitted
                 </p>
+                <div
+                  className={
+                    "font-medium text-[18px] text-white-500 flex items-center justify-center"
+                  }
+                >
+                  <p>3.5 μDoodle</p>&nbsp;
+                  ->&nbsp;
+                  <p>0.025 μC721</p>
+                </div>
               </div>
-              <div className={"mb-2 flex justify-between"}>
-                <p className={"text-white-200 font-medium text-sm"}>Expiry</p>
-                <p className={"text-white-700 font-medium text-sm"}>
-                  June 4, 2024 at 4:09 PM
-                </p>
-              </div>
-              <div className={"mb-2 flex justify-between"}>
-                <p className={"text-white-200 font-medium text-sm"}>Fee</p>
-                <p className={"text-white-700 font-medium text-sm"}>$0</p>
-              </div>
-              <div className={"mb-4 flex justify-between"}>
-                <p className={"text-white-200 font-medium text-sm"}>
-                  Network Cost
-                </p>
-                <p className={"text-white-700 font-medium text-sm"}>$0</p>
-              </div>
-              <p className={"text-white-200 font-medium text-xsm mb-4"}>
-                Please be aware that the execution for limits may vary based on
-                real-time market fluctuations and Ethereum network congestion.
-                Limit may not execute exactly when token reach the specified
-                price. <br />
-                Canceling a limit has a network cost.
-              </p>
-              <Button
-                className={`w-full md:py-2 md:text-sm flex items-center justify-center`}
-                type="primary"
-                size="large"
-                disabled={false}
-                content={"Place Order"}
-                onClick={() => {}}
-              />
-            </div>
+            )}
           </div>
         </Dialog.Content>
       </Dialog.Portal>

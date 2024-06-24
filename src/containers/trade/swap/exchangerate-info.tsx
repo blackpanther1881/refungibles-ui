@@ -6,19 +6,26 @@ import React, { useState } from "react";
 import { useAppStore } from "@/store";
 import { useShallow } from "zustand/react/shallow";
 
-const ExchangeRateInfo = () => {
+const ExchangeRateInfo = ({ activeStakeTab }: any) => {
   const [accordionState, setAccordionState] = useState(false);
   const accordionHandler = (value: string) => {
     console.log(value, "accordionHandler");
     setAccordionState(value === "price-info");
   };
-  const { swapInToken, swapOutToken } = useAppStore(
-    useShallow((state) => ({
-      swapInToken: state.swapTransaction.swapInToken,
-      swapOutToken: state.swapTransaction.swapOutToken
-    }))
-  );
+  const { swapInToken, swapOutToken, limitInToken, limitOutToken } =
+    useAppStore(
+      useShallow((state) => ({
+        swapInToken: state.swapTransaction.swapInToken,
+        swapOutToken: state.swapTransaction.swapOutToken,
+        limitInToken: state.limitTransaction.limitInToken,
+        limitOutToken: state.limitTransaction.limitOutToken
+      }))
+    );
+  const tokenIn =
+    activeStakeTab === "market" ? swapInToken.name : limitInToken.name;
 
+  const tokenOut =
+    activeStakeTab === "limit" ? swapOutToken.name : limitOutToken.name;
   return (
     <div className={"mt-4"}>
       <div>
@@ -37,7 +44,7 @@ const ExchangeRateInfo = () => {
                 }
               >
                 <p className={"text-white-200"}>
-                  1 {swapInToken.name} = 2.5 {swapOutToken.name}
+                  1 {tokenIn} = 2.5 {tokenOut}
                 </p>
                 <p className={"flex items-center"}>
                   <Icon

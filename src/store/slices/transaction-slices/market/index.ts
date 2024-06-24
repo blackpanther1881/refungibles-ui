@@ -10,6 +10,10 @@ const initialState: SwapTransactionState = {
   swapTransaction: {
     swapInToken: selectedItem,
     swapOutToken: selectedOutItem
+  },
+  limitTransaction: {
+    limitInToken: selectedItem,
+    limitOutToken: selectedOutItem
   }
 };
 
@@ -32,6 +36,22 @@ export const createSwapTransactionSlice: StateCreator<SwapTransactionSlice> = (
         swapTransaction: {
           ...state.swapTransaction,
           swapOutToken: val
+        }
+      }))
+  },
+  limitTransactionActions: {
+    setLimitInToken: (val: AssetProps) =>
+      set((state) => ({
+        limitTransaction: {
+          ...state.limitTransaction,
+          limitInToken: val
+        }
+      })),
+    setLimitOutToken: (val: AssetProps) =>
+      set((state) => ({
+        limitTransaction: {
+          ...state.limitTransaction,
+          limitOutToken: val
         }
       }))
   }

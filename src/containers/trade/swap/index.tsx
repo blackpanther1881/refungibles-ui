@@ -18,6 +18,10 @@ const Swap = ({ sourcePath }: Props) => {
       swapOutToken: state.swapTransaction.swapOutToken
     }))
   );
+  const [activeStakeTab, setActiveStakeTab] = useState<any>("market");
+  const customHandler = (value: any) => {
+    setActiveStakeTab(value);
+  };
   return (
     <div className={"w-[502px] mx-auto"}>
       {sourcePath === "home" ? (
@@ -33,8 +37,8 @@ const Swap = ({ sourcePath }: Props) => {
           </p>
         </div>
       ) : null}
-      <SwapTabs />
-      <ExchangeRateInfo />
+      <SwapTabs customHandler={customHandler} activeStakeTab={activeStakeTab} />
+      <ExchangeRateInfo activeStakeTab={activeStakeTab} />
       <div className={"px-5 py-4 bg-[#FFFFFF1A] rounded-md mt-4"}>
         <div className={"flex items-center justify-between mb-4"}>
           <div className={""}>

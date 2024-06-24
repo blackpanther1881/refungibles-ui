@@ -17,6 +17,8 @@ import AssetSelection from "@/components/amount-input/asset-selection";
 import PriceInput from "@/containers/trade/swap/limit/pirce-input";
 import { AssetProps } from "@/utils/types";
 import LimitReview from "@/containers/trade/swap/limit/limit-review";
+import { useAppStore } from "@/store";
+import { useShallow } from "zustand/react/shallow";
 
 type StakeFormFields = {
   amountOut: string;
@@ -33,6 +35,14 @@ const Limit = () => {
   const selectedItem = dummyTokenList["ethereum"][0];
   const selectedOutItem = dummyTokenList["optimism"][2];
   const [show, setShow] = useState(false);
+
+  const { setLimitInToken, setLimitOutToken } = useAppStore(
+    useShallow((state) => ({
+      setLimitInToken: state.limitTransactionActions.setLimitInToken,
+      setLimitOutToken: state.limitTransactionActions.setLimitOutToken
+    }))
+  );
+
   const methods = useForm<StakeFormFields>({
     mode: "all",
     defaultValues: {
@@ -51,7 +61,13 @@ const Limit = () => {
   const isMobile = false;
   const onSubmit: SubmitHandler<StakeFormFields> = (data) => console.log(data);
 
-  const tokenChangeHandler = (tokenKey: string, token: any) => {};
+  const tokenChangeHandler = (tokenKey: string, token: any) => {
+    if (tokenKey === "tokenIn") {
+      setLimitInToken(token);
+    } else {
+      setLimitOutToken(token);
+    }
+  };
 
   return (
     <FormProvider {...methods}>
