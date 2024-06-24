@@ -14,9 +14,10 @@ export interface Props {
   className?: string;
   activeInput?: boolean;
   tokenKey?: string;
+  dstTokenKey?: string;
   networkKey?: string;
   label: string;
-  tokeChange?: (tokenKey: string, token: any) => void;
+  tokeChange?: (tokenKey: string, token: any) => void; // change handler to trigger any actions in parent component
 }
 
 export const AmountInput = ({
@@ -25,6 +26,7 @@ export const AmountInput = ({
   assetInfo,
   type = "amountIn",
   tokenKey = "tokenIn",
+  dstTokenKey = "tokenOut",
   networkKey = "tokenInNetwork",
   label,
   tokeChange
@@ -34,6 +36,11 @@ export const AmountInput = ({
 
   const availableBlc = 222;
   const availableBlcDollar = "$3434";
+
+  const selectedToken = watch(tokenKey);
+  const selectedDstToken = watch(dstTokenKey);
+
+  console.log(selectedToken, "selectedToken");
 
   const availableBlcHandler = (amount: any) => {
     // const field =
@@ -47,16 +54,17 @@ export const AmountInput = ({
 
   const onSelect = (item: any) => {
     console.log(item, "selected-item");
-    setValue(tokenKey, item);
     setShowAssetDialog(false);
+    if (item.name === selectedDstToken.name) {
+      setValue(tokenKey, item);
+      setValue(dstTokenKey, selectedToken);
+    } else {
+      setValue(tokenKey, item);
+    }
     if (tokeChange) {
       tokeChange(tokenKey, item);
     }
   };
-
-  const selectedToken = watch(tokenKey);
-
-  console.log(selectedToken, "selectedToken");
 
   const amountButtonHandler = (value: any) => {
     setValue(type, value);

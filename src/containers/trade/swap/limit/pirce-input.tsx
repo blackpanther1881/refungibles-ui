@@ -6,6 +6,7 @@ import AssetSelection from "@/components/amount-input/asset-selection";
 import { dummyTokenList } from "@/utils/config";
 import React, { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
+import { AssetProps } from "@/utils/types";
 
 const percentageList = [
   {
@@ -47,6 +48,17 @@ const PriceInput = () => {
   }, [tokenOut, tokenIn]);
 
   const handleLimitChange = () => {};
+
+  const handleLimitTokenChange = (item: AssetProps) => {
+    setValue("tokenIn", tokenIn);
+    setValue("tokenOut", item);
+    setShowAssetDialog(false);
+
+    if (item.name === tokenIn.name) {
+      setValue("tokenIn", tokenOut);
+      setValue("tokenOut", item);
+    }
+  };
 
   const handleLimitSelection = (value: any) => {
     setActivePercent(percentageList.find((item) => item.value === value));
@@ -161,7 +173,7 @@ const PriceInput = () => {
         <AssetSelection
           selectedItem={primaryToken}
           tokenList={dummyTokenList}
-          onSelectHandler={() => {}}
+          onSelectHandler={handleLimitTokenChange}
           onClose={() => {
             setShowAssetDialog(false);
           }}

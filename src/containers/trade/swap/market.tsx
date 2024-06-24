@@ -47,6 +47,7 @@ const Market = () => {
   const isMobile = false;
   const onSubmit: SubmitHandler<StakeFormFields> = (data) => console.log(data);
 
+  // setting values into zustand store to use outside of parent component
   const tokenChangeHandler = (tokenKey: string, token: any) => {
     if (tokenKey === "tokenIn") {
       setSwapInToken(token);
@@ -64,6 +65,7 @@ const Market = () => {
           type={"amountIn"}
           label={"Pay"}
           tokenKey={"tokenIn"}
+          dstTokenKey={"tokenOut"}
           networkKey={"tokenInNetwork"}
           className={"!rounded-tl-[0px]"}
           tokeChange={tokenChangeHandler}
@@ -87,6 +89,7 @@ const Market = () => {
             activeInput={false}
             type={"amountOut"}
             tokenKey={"tokenOut"}
+            dstTokenKey={"tokenIn"}
             networkKey={"tokenOutNetwork"}
           />
         </div>

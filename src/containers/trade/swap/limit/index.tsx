@@ -51,6 +51,8 @@ const Limit = () => {
   const isMobile = false;
   const onSubmit: SubmitHandler<StakeFormFields> = (data) => console.log(data);
 
+  const tokenChangeHandler = (tokenKey: string, token: any) => {};
+
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
@@ -61,7 +63,9 @@ const Limit = () => {
           type={"amountIn"}
           label={"Pay"}
           tokenKey={"tokenIn"}
+          dstTokenKey={"tokenOut"}
           networkKey={"tokenInNetwork"}
+          tokeChange={tokenChangeHandler}
         />
         <div className="flex w-full items-center justify-center relative">
           <div
@@ -82,7 +86,9 @@ const Limit = () => {
             activeInput={false}
             type={"amountOut"}
             tokenKey={"tokenOut"}
+            dstTokenKey={"tokenIn"}
             networkKey={"tokenOutNetwork"}
+            tokeChange={tokenChangeHandler}
           />
         </div>
         <div>
