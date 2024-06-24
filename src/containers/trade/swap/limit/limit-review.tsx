@@ -107,8 +107,7 @@ const LimitReview = ({ onClose }: Props) => {
                     "font-medium text-[18px] text-white-500 flex items-center justify-center"
                   }
                 >
-                  <p>3.5 μDoodle</p>&nbsp;
-                  ->&nbsp;
+                  <p>3.5 μDoodle</p>&nbsp; - &nbsp;
                   <p>0.025 μC721</p>
                 </div>
               </div>
